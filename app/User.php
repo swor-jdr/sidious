@@ -6,11 +6,12 @@ use App\Traits\IsJWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, IsJWTSubject, SoftDeletes;
+    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
