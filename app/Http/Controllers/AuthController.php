@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 
+use Carbon\Carbon;
+
 class AuthController extends Controller
 {
     /**
@@ -66,15 +68,15 @@ class AuthController extends Controller
      * Get the token array structure.
      *
      * @param  string $token
-     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithToken($token)
     {
+        $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL());
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'token' => $token,
+            'expires_at' => $expires_at,
+            'user' => auth()->user()
         ]);
     }
 }

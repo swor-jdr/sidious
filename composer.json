@@ -11,8 +11,9 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "nicolasey/auth": "@dev",
-        "nicolasey/crm": "@dev",
+        "nicolasey/forum": "@dev",
         "nicolasey/organization": "@dev",
+        "nicolasey/personnages": "@dev",
         "silber/bouncer": "v1.0.0-rc.3",
         "tymon/jwt-auth": "1.0.0-rc.2"
     },
@@ -67,6 +68,18 @@
         {
             "type": "path",
             "url": "../../packages/auth"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/organization"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/forum"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/personnages"
         }
     ]
 }
