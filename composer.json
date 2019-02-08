@@ -11,7 +11,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "silber/bouncer": "v1.0.0-rc.3",
-        "tymon/jwt-auth": "1.0.0-rc.3"
+        "tymon/jwt-auth": "1.0.0-rc.3",
+        "nicolasey/personnage": "@dev"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",
@@ -63,19 +64,11 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../../packages/auth"
+            "url": "../forum"
         },
         {
             "type": "path",
-            "url": "../../packages/organization"
-        },
-        {
-            "type": "path",
-            "url": "../../packages/forum"
-        },
-        {
-            "type": "path",
-            "url": "../../packages/personnages"
+            "url": "../personnage"
         }
     ]
 }
