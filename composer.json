@@ -16,6 +16,8 @@
         "silber/bouncer": "v1.0.0-rc.3",
         "tymon/jwt-auth": "1.0.0-rc.3",
         "unoapp-dev/laravel-pubnub": "^1.0"
+        "nicolasey/personnage": "@dev",
+        "nicolasey/forum": "@dev"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",

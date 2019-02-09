@@ -4,7 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< develop
     "content-hash": "7647e991376287fba1b8c356512d9581",
+=======
+<<<<<<< develop
+    "content-hash": "b6f2637665fe918dc2f5875d92e1176c",
+=======
+    "content-hash": "81aae649f7d96d3416fc9badcb256077",
+>>>>>>> add forum pack
+>>>>>>> add forum pack
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -833,6 +841,7 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+<<<<<<< develop
             "name": "kylekatarnls/update-helper",
             "version": "1.1.1",
             "source": {
@@ -862,6 +871,44 @@
             "autoload": {
                 "psr-0": {
                     "UpdateHelper\\": "src/"
+=======
+            "name": "kalnoy/nestedset",
+            "version": "v4.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lazychaser/laravel-nestedset.git",
+                "reference": "8f2882b8e402cce1204233541ea8ff51513f9e71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lazychaser/laravel-nestedset/zipball/8f2882b8e402cce1204233541ea8ff51513f9e71",
+                "reference": "8f2882b8e402cce1204233541ea8ff51513f9e71",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.2 - 5.7",
+                "illuminate/events": "5.2 - 5.7",
+                "illuminate/support": "5.2 - 5.7",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "v4.2.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Kalnoy\\Nestedset\\NestedSetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kalnoy\\Nestedset\\": "src/"
+>>>>>>> add forum pack
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -870,12 +917,28 @@
             ],
             "authors": [
                 {
+<<<<<<< develop
                     "name": "Kyle",
                     "email": "kylekatarnls@gmail.com"
                 }
             ],
             "description": "Update helper",
             "time": "2019-06-05T08:34:23+00:00"
+=======
+                    "name": "Alexander Kalnoy",
+                    "email": "lazychaser@gmail.com"
+                }
+            ],
+            "description": "Nested Set Model for Laravel 4-5",
+            "keywords": [
+                "database",
+                "hierarchy",
+                "laravel",
+                "nested sets",
+                "nsm"
+            ],
+            "time": "2018-09-04T15:11:11+00:00"
+>>>>>>> add forum pack
         },
         {
             "name": "laravel/framework",
@@ -1760,6 +1823,7 @@
             "time": "2019-05-13T20:27:43+00:00"
         },
         {
+<<<<<<< develop
             "name": "nicolasey/personnage",
             "version": "0.1",
             "source": {
@@ -1772,6 +1836,79 @@
                 "url": "https://api.github.com/repos/nicolasey/personnage/zipball/37bb6444a557a1edbe526f8edd2a63bf4c6e63f5",
                 "reference": "37bb6444a557a1edbe526f8edd2a63bf4c6e63f5",
                 "shasum": ""
+=======
+<<<<<<< develop
+            "name": "nicolasey/personnages",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/personnages",
+                "reference": "bef5bb74bb548cfe2cddd54eaf8bb88b0f0f5671",
+=======
+            "name": "nicolasey/forum",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../forum",
+                "reference": "92836cdca3dba09613ebacbbfe11b82772715e97",
+                "shasum": null
+            },
+            "require": {
+                "illuminate/database": "~5.6|~5.7",
+                "illuminate/events": "~5.6|~5.7",
+                "illuminate/routing": "~5.6|~5.7",
+                "illuminate/support": "~5.6|~5.7",
+                "kalnoy/nestedset": "^4.3",
+                "php": "^7.1.3",
+                "spatie/laravel-sluggable": "^2.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "^3.6",
+                "phpunit/phpunit": "^7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicolasey\\Forum\\ForumServiceProvider",
+                        "Nicolasey\\Forum\\ForumEventServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicolasey\\Forum\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Nicolasey\\Forum\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "nicolasey",
+                    "email": "nicolas.sey@gmail.com"
+                }
+            ],
+            "description": "Forum package for a Laravel based API"
+        },
+        {
+            "name": "nicolasey/personnage",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../personnage",
+                "reference": "ab9eeeb14638873b21d90ca75e0cb2d7c4204ae4",
+>>>>>>> add forum pack
+                "shasum": null
+>>>>>>> add forum pack
             },
             "require": {
                 "illuminate/database": "~5.6|~5.7",
@@ -7291,7 +7428,18 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
+<<<<<<< develop
     "stability-flags": [],
+=======
+    "stability-flags": {
+<<<<<<< develop
+        "nicolasey/personnages": 20
+=======
+        "nicolasey/personnage": 20,
+        "nicolasey/forum": 20
+>>>>>>> add forum pack
+    },
+>>>>>>> add forum pack
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
