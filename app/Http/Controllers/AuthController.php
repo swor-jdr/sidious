@@ -39,7 +39,9 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        $user = auth()->user();
+        $user->load(['personnages']);
+        return response()->json($user);
     }
 
     /**
@@ -73,10 +75,14 @@ class AuthController extends Controller
     protected function respondWithToken($token)
     {
         $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL());
+
+        $user = auth()->user();
+        $user->load(['personnages']);
+
         return response()->json([
             'token' => $token,
             'expires_at' => $expires_at,
-            'user' => auth()->user()
+            'user' => $user
         ]);
     }
 }
