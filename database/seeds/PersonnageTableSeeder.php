@@ -11,7 +11,7 @@ class PersonnageTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Nicolasey\Personnage\Models\Personnage::class)->create([
+        factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
             "owner" => factory(App\User::class)->create(['name' => "Vador", "email" => "vador@sith.dev"])->id,
             "name" => "Anakin"
         ]);
