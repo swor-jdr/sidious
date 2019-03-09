@@ -26,12 +26,12 @@ class PersonnageTableSeeder extends Seeder
         ]);
 
         factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
-            "owner" => $user->id,
+            "owner_id" => $user->id,
             "name" => $this->faker->darkSide,
         ]);
 
         factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
-            "owner" => $user->id,
+            "owner_id" => $user->id,
             "name" => $this->faker->lightSide,
         ]);
     }
