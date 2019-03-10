@@ -1,9 +1,18 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory;
 
 class PersonnageTableSeeder extends Seeder
 {
+    private $faker;
+
+    public function __construct()
+    {
+        $this->faker = Faker\Factory::create();
+        $this->faker->addProvider(new HydrefLab\JediFaker\Provider\Character($this->faker));
+    }
+
     /**
      * Run the database seeds.
      *
@@ -11,9 +20,19 @@ class PersonnageTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\Nicolasey\Personnage\Models\Personnage::class)->create([
-            "owner" => factory(App\User::class)->create(['name' => "Vador", "email" => "vador@sith.dev"])->id,
-            "name" => "Anakin"
+        $user = factory(App\User::class)->create([
+            'name' => $this->faker->darkSide,
+            "email" => "vador@sith.gal",
+        ]);
+
+        factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
+            "owner_id" => $user->id,
+            "name" => $this->faker->darkSide,
+        ]);
+
+        factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
+            "owner_id" => $user->id,
+            "name" => $this->faker->lightSide,
         ]);
     }
 }

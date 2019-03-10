@@ -6,7 +6,7 @@ use App\Traits\IsJWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Nicolasey\Personnage\Traits\HasPersonnages;
+use Nicolasey\Personnages\Traits\HasPersonnages;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
