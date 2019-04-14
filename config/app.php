@@ -150,7 +150,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Unoappdev\PubnubDriver\PubnubServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
