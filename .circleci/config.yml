@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
+      - image: circleci/php:7.2-node-browsers
       - image: djfarrelly/maildev
       - image: redis
 
@@ -22,6 +22,7 @@ jobs:
       - checkout
       - run: sudo apt install -y libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+      - run: sudo docker-php-ext-install exif
       - run: sudo composer self-update
 
       # Download and cache dependencies
