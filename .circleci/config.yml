@@ -7,17 +7,22 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.2-cli
+      - image: circleci/php:7.1-node-browsers
+      - image: djfarelly/maildev
+      - image: redis
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mysql:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/laravel
 
     steps:
       - checkout
+      - run: sudo apt install -y libsqlite3-dev zliblg-dev
+      - run: sudo docker-php-ext-install zip
+      - run: sudo composer self-update
 
       # Download and cache dependencies
       - restore_cache:
@@ -34,7 +39,9 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
 
       # setting up environment
-      - run: cp .env.example .env
+      - run: touch storage/testing.sqlite
+      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      - run: cp .env.testing .env
 
       # set encryption key
       - run: php artisan key:generate
