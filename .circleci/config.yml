@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/php:7.1-node-browsers
-      - image: djfarelly/maildev
+      - image: djfarrelly/maildev
       - image: redis
 
       # Specify service dependencies here if necessary
