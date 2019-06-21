@@ -6,12 +6,15 @@ use App\Traits\IsJWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nicolasey\Personnages\Traits\HasPersonnages;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities;
+    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities, HasPersonnages;
+
+    protected $with = ['personnages'];
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password',
     ];
 
     /**

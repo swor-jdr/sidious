@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UsersController extends Controller
 {
@@ -30,8 +31,15 @@ class UsersController extends Controller
     public function store()
     {
         $user = User::create(request()->input());
+        $user->load(['personnages']);
+        $token = JWTAuth::fromUser($user);
+        $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL())->timestamp;
 
-        return response()->json($user);
+        return response()->json([
+            "user" => $user,
+            "token" => $token,
+            "expires_at" => $expires_at
+        ]);
     }
 
     /**
