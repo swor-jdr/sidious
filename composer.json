@@ -11,7 +11,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "lorisleiva/laravel-actions": "^0.1.2",
-        "nicolasey/personnages": "@dev",
+        "nicolasey/personnages": "0.1",
         "predis/predis": "^1.1",
         "silber/bouncer": "v1.0.0-rc.3",
         "tymon/jwt-auth": "1.0.0-rc.3",
@@ -66,13 +66,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
-        {
-            "type": "path",
-            "url": "../forum"
-        },
-        {
-            "type": "path",
-            "url": "../../packages/personnages"
-        }
+        { "type": "vcs", "url": "https://github.com/nicolasey/personnage" },
+        { "type": "vcs", "url": "https://github.com/nicolasey/forum" }
     ]
 }
