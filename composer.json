@@ -15,8 +15,7 @@
         "predis/predis": "^1.1",
         "silber/bouncer": "v1.0.0-rc.3",
         "tymon/jwt-auth": "1.0.0-rc.3",
-        "unoapp-dev/laravel-pubnub": "^1.0"
-        "nicolasey/personnage": "@dev",
+        "unoapp-dev/laravel-pubnub": "^1.0",
         "nicolasey/forum": "@dev"
     },
     "require-dev": {
