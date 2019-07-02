@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolasey\Personnages\Models\Personnage;
 
 class Post extends Model
 {
@@ -10,7 +11,7 @@ class Post extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class, "author");
+        return $this->belongsTo(Personnage::class, "author");
     }
 
     public function topic()

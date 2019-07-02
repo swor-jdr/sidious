@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolasey\Personnages\Models\Personnage;
 
 class Topic extends Model
 {
@@ -18,7 +19,7 @@ class Topic extends Model
 
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Personnage::class);
     }
 
     public function posts()
