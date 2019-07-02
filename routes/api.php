@@ -23,3 +23,6 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
 });
 
 Route::resource('users', 'UsersController', ["except" => ["create", "edit"]]);
+Route::apiResource('forums', 'ForumController');
+Route::apiResource('forums.topics', 'ForumController');
+Route::apiResource('topics.posts', 'ForumController');
