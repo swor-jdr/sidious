@@ -45,8 +45,6 @@ class PostController extends Controller
         $data['topic_id'] = $topic->id;
         $data['author'] = auth()->user()->getAuthIdentifier();
 
-        if()
-
         try {
             $post = Post::create($data);
             return $post;
