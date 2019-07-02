@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f6532caf9ac28a66cb815c82132bfe3",
+    "content-hash": "da528dfbec35345e247b280920cebcf6",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -609,33 +609,37 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115"
+                "reference": "dc784032a3f6f4e7a4b882e272b771f6fe4c37cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc784032a3f6f4e7a4b882e272b771f6fe4c37cf",
+                "reference": "dc784032a3f6f4e7a4b882e272b771f6fe4c37cf",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
                 "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5"
+                "ralouphie/getallheaders": "^2.0.5 || ^3.0.0"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
+                "ext-zlib": "*",
                 "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
+            },
+            "suggest": {
+                "zendframework/zend-httphandlerrunner": "Emit PSR-7 responses"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.5-dev"
+                    "dev-master": "1.6-dev"
                 }
             },
             "autoload": {
@@ -672,7 +676,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-04T20:46:45+00:00"
+            "time": "2019-06-30T00:37:05+00:00"
         },
         {
             "name": "intervention/image",
@@ -1819,76 +1823,6 @@
             "time": "2019-05-13T20:27:43+00:00"
         },
         {
-            "name": "nicolasey/forum",
-            "version": "0.1",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:nicolasey/forum.git",
-                "reference": "eff282e7c4e01e7bad5b644ab3694988e80c7855"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nicolasey/forum/zipball/eff282e7c4e01e7bad5b644ab3694988e80c7855",
-                "reference": "eff282e7c4e01e7bad5b644ab3694988e80c7855",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.6|~5.7",
-                "illuminate/events": "~5.6|~5.7",
-                "illuminate/routing": "~5.6|~5.7",
-                "illuminate/support": "~5.6|~5.7",
-                "kalnoy/nestedset": "^4.3",
-                "php": "^7.1.3",
-                "spatie/eloquent-sortable": "^3.4",
-                "spatie/laravel-sluggable": "^2.1"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.1",
-                "orchestra/testbench": "^3.6",
-                "phpunit/phpunit": "^7.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Nicolasey\\Forum\\ForumServiceProvider",
-                        "Nicolasey\\Forum\\ForumEventServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "database/seeds",
-                    "database/factories"
-                ],
-                "psr-4": {
-                    "Nicolasey\\Forum\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Nicolasey\\Forum\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
-            "authors": [
-                {
-                    "name": "nicolasey",
-                    "email": "nicolas.sey@gmail.com"
-                }
-            ],
-            "description": "Forum package for a Laravel based API",
-            "support": {
-                "source": "https://github.com/nicolasey/forum/tree/0.1",
-                "issues": "https://github.com/nicolasey/forum/issues"
-            },
-            "time": "2019-03-08T20:42:47+00:00"
-        },
-        {
             "name": "nicolasey/personnage",
             "version": "0.1",
             "source": {
@@ -2702,24 +2636,24 @@
         },
         {
             "name": "ralouphie/getallheaders",
-            "version": "2.0.5",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3"
+                "php": ">=5.6"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
             },
             "type": "library",
             "autoload": {
@@ -2738,7 +2672,7 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "time": "2016-02-11T07:05:27+00:00"
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "ramsey/uuid",
@@ -2940,56 +2874,6 @@
                 "roles"
             ],
             "time": "2018-09-09T14:03:20+00:00"
-        },
-        {
-            "name": "spatie/eloquent-sortable",
-            "version": "3.4.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "340c7338031338aba47c41836e335bf9a5ef0216"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/340c7338031338aba47c41836e335bf9a5ef0216",
-                "reference": "340c7338031338aba47c41836e335bf9a5ef0216",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~5.8.0",
-                "phpunit/phpunit": "^6.2|^7.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\EloquentSortable\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be"
-                }
-            ],
-            "description": "Sortable behaviour for eloquent models",
-            "homepage": "https://github.com/spatie/eloquent-sortable",
-            "keywords": [
-                "behaviour",
-                "eloquent",
-                "laravel",
-                "model",
-                "sort",
-                "sortable"
-            ],
-            "time": "2019-02-27T00:18:34+00:00"
         },
         {
             "name": "spatie/image",
@@ -7470,10 +7354,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "nicolasey/personnage": 20,
-        "nicolasey/forum": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
