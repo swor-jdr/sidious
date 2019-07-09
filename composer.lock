@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da528dfbec35345e247b280920cebcf6",
+    "content-hash": "8e894d289c7f1a0b87146759141d0748",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1649,6 +1649,58 @@
                 "psr-3"
             ],
             "time": "2018-11-05T09:00:11+00:00"
+        },
+        {
+            "name": "my-com/laravel-conditional-actions",
+            "version": "v1.0-beta.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/my-com/laravel-conditional-actions.git",
+                "reference": "39a885d250b82b96ac499334ef2544b7026c4ac6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/my-com/laravel-conditional-actions/zipball/39a885d250b82b96ac499334ef2544b7026c4ac6",
+                "reference": "39a885d250b82b96ac499334ef2544b7026c4ac6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/config": "^5.6",
+                "illuminate/database": "^5.6",
+                "illuminate/http": "^5.6",
+                "illuminate/support": "^5.6"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "mockery/mockery": "^1.2",
+                "orchestra/testbench": "~3.6.6",
+                "phpmd/phpmd": "^2.6",
+                "phpro/grumphp": "^0.15.0",
+                "sebastian/phpcpd": "^4.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": "ConditionalActions\\ConditionalActionsServiceProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ConditionalActions\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aleksandr Paramonov",
+                    "email": "a.paramonov@corp.my.com"
+                }
+            ],
+            "time": "2019-06-11T08:04:10+00:00"
         },
         {
             "name": "namshi/jose",
@@ -7354,7 +7406,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "my-com/laravel-conditional-actions": 10
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
