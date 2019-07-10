@@ -151,7 +151,8 @@ return [
          * Package Service Providers...
          */
         Unoappdev\PubnubDriver\PubnubServiceProvider::class,
-        
+        Modules\Forum\ForumServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
