@@ -55,6 +55,11 @@ class Forum extends Model
         parent::boot();
 
         static::deleted(function ($model) {
+            // softDelete child elements
+            $model->topics()->delete();
+            $model->children()->delete();
+
+            // make the parent check lastPost accuracy
             if($model->parent) $model->parent->evaluateLastPost();
         });
     }

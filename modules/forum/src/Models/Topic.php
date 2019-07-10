@@ -31,4 +31,13 @@ class Topic extends Model
     {
         return $this->posts()->latest("created_at");
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($model) {
+            $model->posts()->delete();
+        });
+    }
 }
