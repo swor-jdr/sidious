@@ -1,11 +1,14 @@
 <?php
 namespace Modules\Forum;
 
+use App\Traits\UsesProviderHelpers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ForumServiceProvider extends ServiceProvider
 {
+    use UsesProviderHelpers;
+
     private $namespace = "Modules\Forum\Controllers";
 
     /**
@@ -15,7 +18,7 @@ class ForumServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerEloquentFactoriesFrom(__DIR__."/../database/factories");
     }
 
     /**
