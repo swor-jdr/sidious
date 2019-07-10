@@ -10,4 +10,9 @@ class Planet extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+
+    public function secteur()
+    {
+        return $this->belongsTo(Secteur::class);
+    }
 }
