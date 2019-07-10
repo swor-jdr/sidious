@@ -1,6 +1,5 @@
 <?php
-
-namespace App;
+namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Nicolasey\Personnages\Models\Personnage;

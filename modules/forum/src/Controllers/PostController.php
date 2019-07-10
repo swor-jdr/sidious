@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Forum\Controllers;
 
-use App\Post;
-use App\Topic;
-use Illuminate\Http\Request;
+use Modules\Forum\Models\Post;
+use Modules\Forum\Models\Topic;
+use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {

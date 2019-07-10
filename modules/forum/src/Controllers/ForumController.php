@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Forum\Controllers;
 
 use App\Forum;
 use App\Post;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Kalnoy\Nestedset\Collection;
+use App\Http\Controllers\Controller;
 
 class ForumController extends Controller
 {
@@ -64,12 +65,13 @@ class ForumController extends Controller
         $parent = (request()->only("parent_id")) ? request()->only("parent_id")['parent_id'] : null;
         if($parent) $newParent = Forum::findOrFail($parent);
 
-        // Check if forum has to move
+        // Check if forum has to move AND has post
         $hasMoved = ($newParent && ($newParent->id !== $forum->parent_id));
+        $hasPostsAndMoved = ($hasMoved && $forum->last_post);
 
         try {
             // Check new ancestors last post with ours
-            if($hasMoved && $forum->last_post) {
+            if($hasPostsAndMoved) {
                 // Build new breadcrumbs for given
                 $newAncestors = $newParent->getAncestors();
                 $newAncestors->prepend($newParent);
@@ -80,7 +82,7 @@ class ForumController extends Controller
             $forum->update($data);
 
             // Check ancestors last post then
-            if($hasMoved && $forum->last_post) {
+            if($hasPostsAndMoved) {
                 $ancestors = $forum->getAncestors();
                 $this->setAncestorsLastPost($ancestors, $forum->lastPost);
             }
@@ -91,13 +93,44 @@ class ForumController extends Controller
         }
     }
 
+    /**
+     * Delete a forum
+     *
+     * Cascade is handled by the forum Model
+     *
+     * @param Forum $forum
+     * @throws \Exception
+     */
     public function destroy(Forum $forum)
     {
-
+        try {
+            $forum->delete();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
 
-    private function setAncestorsEvaluateLastPost(Collection $ancestors, Post $lastPost)
+    /**
+     * Set last post to ancestors correctly
+     *
+     * - If no post is given, we seek lastPost for the deepest forum as last post
+     * - From deepest forum to the highest, if last post is newer, it replaces last post
+     * - It last post is no strictly newer than actual last post, this process stops
+     *
+     * @param Collection $ancestors
+     * @param Post $lastPost
+     */
+    private function setAncestorsLastPost(Collection $ancestors, Post $lastPost = null)
     {
+        if(! $lastPost) $lastPost = $this->getLastPostFromForum($ancestors->first);
 
+        foreach ($ancestors as $ancestor) {
+            // if ancestor last post is newer, then we stop
+            $ancestorLastPostIsNewer = ($ancestor->lastPost->id > $lastPost->id);
+            if($ancestorLastPostIsNewer) break;
+
+            // Otherwise save this lastPost as last for the ancestor, and continue
+            $ancestor->last_post = $lastPost->id;
+        }
     }
 }

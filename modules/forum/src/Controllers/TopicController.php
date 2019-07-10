@@ -1,10 +1,9 @@
 <?php
+namespace Modules\Forum\Controllers;
 
-namespace App\Http\Controllers;
-
-use App\Forum;
-use App\Topic;
-use Illuminate\Http\Request;
+use Modules\Forum\Models\Forum;
+use Modules\Forum\Models\Topic;
+use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
 {
