@@ -2,8 +2,8 @@
 
 namespace Modules\Forum\Controllers;
 
-use App\Forum;
-use App\Post;
+use Modules\Forum\Models\Forum;
+use Modules\Forum\Models\Post;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Kalnoy\Nestedset\Collection;
 use App\Http\Controllers\Controller;
