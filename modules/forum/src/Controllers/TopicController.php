@@ -53,9 +53,26 @@ class TopicController extends Controller
         return $topic;
     }
 
+    /**
+     * Update a topic
+     *
+     * @param Forum $forum
+     * @param Topic $topic
+     * @return Topic
+     * @throws \Exception
+     */
     public function update(Forum $forum, Topic $topic)
     {
+        $data = request()->only("name", "author", "topic_id");
 
+        // @todo filter data depending on permissions
+
+        try {
+            $topic->update($data);
+            return $topic;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
     }
 
     /**
