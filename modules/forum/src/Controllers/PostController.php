@@ -63,9 +63,9 @@ class PostController extends Controller
      */
     public function update(Topic $topic, Post $post)
     {
-        $data = request()->only("content");
+        $data = request()->only("content", "author");
 
-        // @todo if admin, update author
+        // @todo if not admin, pluck out author
 
         try {
             $post->update($data);
