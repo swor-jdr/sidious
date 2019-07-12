@@ -16,6 +16,12 @@ class CreateSecteursTable extends Migration
         Schema::create('secteurs', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->softDeletes();
+            $table->string("name");
+            $table->string("slug");
+            $table->nestedSet();
+            $table->text("content");
+            $table->string("image")->nullable();
         });
     }
 

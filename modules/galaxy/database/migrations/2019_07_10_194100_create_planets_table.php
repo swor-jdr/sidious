@@ -15,7 +15,14 @@ class CreatePlanetsTable extends Migration
     {
         Schema::create('planets', function (Blueprint $table) {
             $table->increments('id');
+            $table->string("name");
+            $table->string("slug");
+            $table->text("content");
+            $table->string("image")->nullable();
+            $table->unsignedSmallInteger("type")->nullable();
+            $table->unsignedMediumInteger("secteur_id")->index();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
