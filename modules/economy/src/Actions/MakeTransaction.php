@@ -2,7 +2,7 @@
 
 namespace Modules\Economy\Actions;
 
-use App\Exceptions\TransactionNotAllowed;
+use Modules\Economy\Exceptions\TransactionNotAllowed;
 use Lorisleiva\Actions\Action;
 use Modules\Economy\Models\Account;
 use Modules\Economy\Models\Transaction;

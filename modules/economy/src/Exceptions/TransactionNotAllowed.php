@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Ecoomy\Exceptions;
+namespace Modules\Economy\Exceptions;
 
 use Exception;
 
