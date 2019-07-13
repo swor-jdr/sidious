@@ -26,7 +26,7 @@ class SecteursController extends Controller
      */
     public function show(Secteur $secteur)
     {
-        return $secteur->load("children");
+        return $secteur->load("children", "planets");
     }
 
     /**
