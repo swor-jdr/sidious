@@ -19,4 +19,20 @@ class EconomyLine extends Model
     {
         return $this->belongsTo(Fiche::class);
     }
+
+    /**
+     * Handles economy fiche balance
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            $model->fiche->updateBalance($model->amount, $model->isCredit);
+        });
+
+        static::deleting(function ($model) {
+            $model->fiche->updateBalance($model->amount, !$model->isCredit);
+        });
+    }
 }
