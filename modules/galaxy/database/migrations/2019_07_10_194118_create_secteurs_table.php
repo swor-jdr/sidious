@@ -20,7 +20,7 @@ class CreateSecteursTable extends Migration
             $table->string("name");
             $table->string("slug");
             $table->nestedSet();
-            $table->text("content");
+            $table->text("content")->nullable();
             $table->string("image")->nullable();
         });
     }
