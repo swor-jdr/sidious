@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->boolean("isCredit")->default(false);
             $table->string("motivation");
             $table->timestamps();
-            $table->unsignedMediumInteger("account_id")->index();
+            $table->unsignedMediumInteger("to")->index();
         });
     }
 

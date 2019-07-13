@@ -19,12 +19,44 @@ class Account extends Model
     }
 
     /**
-     * Account transactions
+     * Account transactions From
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function transactionsFrom()
+    {
+        return $this->hasMany(Transaction::class, "from");
+    }
+
+    /**
+     * Account transactions To
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transactionsTo()
+    {
+        return $this->hasMany(Transaction::class, "to");
+    }
+
+    /**
+     * All account transactions
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->transactionsFrom()->get()->merge($this->transactionsTo()->get());
+    }
+
+    /**
+     * Add or withdraw amount from fiche balance
+     *
+     * @param int $amount
+     * @param bool $isCredit
+     */
+    public function updateBalance(int $amount, bool $isCredit)
+    {
+        $this->balance += ($isCredit) ? $amount : -$amount;
+        $this->save();
     }
 }
