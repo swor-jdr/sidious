@@ -20,6 +20,10 @@
         <testsuite name="Forum">
             <directory suffix="Test.php">./modules/forum/tests</directory>
         </testsuite>
+
+        <testsuite name="Galaxy">
+            <directory suffix="Test.php">./modules/galaxy/tests</directory>
+        </testsuite>
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
