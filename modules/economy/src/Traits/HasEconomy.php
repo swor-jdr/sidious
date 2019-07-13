@@ -41,8 +41,8 @@ trait HasEconomy
     public static function bootHasEconomy()
     {
         static::created(function ($model) {
-            $model->fiche()->create();
-            $model->account()->create();
+            $fiche = $model->fiche()->create();
+            $model->account()->create(['fiche_id' => $fiche->id]);
         });
 
         static::deleting(function ($model) {

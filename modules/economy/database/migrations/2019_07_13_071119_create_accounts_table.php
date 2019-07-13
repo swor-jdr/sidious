@@ -19,6 +19,7 @@ class CreateAccountsTable extends Migration
             $table->softDeletes();
             $table->morphs("owner");
             $table->unsignedBigInteger("balance")->default(200);
+            $table->unsignedMediumInteger("fiche_id")->index();
         });
     }
 

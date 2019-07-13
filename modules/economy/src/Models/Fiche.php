@@ -41,4 +41,9 @@ class Fiche extends Model
         $this->balance += ($isCredit) ? $amount : -$amount;
         $this->save();
     }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class);
+    }
 }
