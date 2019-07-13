@@ -6,12 +6,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Galaxy\Models\Planet;
 use Nicolasey\Personnages\Models\Personnage;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Company extends Model
 {
-    use SoftDeletes, HasEconomy;
+    use SoftDeletes, HasEconomy, HasSlug;
 
     protected $guarded = [];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 
     /**
      * Company location
