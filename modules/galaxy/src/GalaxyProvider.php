@@ -1,12 +1,12 @@
 <?php
-namespace Modules\Galaxy\Providers;
+namespace Modules\Galaxy;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class GalaxyProvider extends ServiceProvider
 {
-    private $namespace = "Modules\Forum\Controllers";
+    private $namespace = "Modules\Galaxy\Controllers";
 
     /**
      * Register services.
