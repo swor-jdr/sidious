@@ -46,8 +46,8 @@ class MakeTransaction extends Action
          */
         try {
              return Transaction::create([
-                "from" => ,
-                "to" => ,
+                "from" => $from->id,
+                "to" => $to->id,
                 "amount" => $this->get("amount"),
                 "isCredit" => $this->get("isCredit")
             ]);
