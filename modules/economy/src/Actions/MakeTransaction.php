@@ -37,7 +37,9 @@ class MakeTransaction extends Action
         $from = Account::findOrFail($this->get("from"));
         $to = Account::findOrFail($this->get("to"));
         if($this->get('amount') < 0) throw new TransactionNotAllowed();
-        if($from->account->balance < $this->get("amount") throw new TransactionNotAllowed("Solde insuffisant");
+        if($from->account->balance < $this->get("amount")) {
+            throw new TransactionNotAllowed("Not enough funds");
+        }
 
         /*
          * PROCEED
