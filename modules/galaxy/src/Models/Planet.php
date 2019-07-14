@@ -4,13 +4,15 @@ namespace Modules\Galaxy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Economy\Traits\HasCompanies;
+use Modules\Economy\Traits\HasEconomy;
 use Nicolasey\Personnages\Models\Personnage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Planet extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, HasCompanies, HasEconomy;
 
     protected $guarded = [];
 
