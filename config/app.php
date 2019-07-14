@@ -153,6 +153,7 @@ return [
         Unoappdev\PubnubDriver\PubnubServiceProvider::class,
         Modules\Forum\ForumServiceProvider::class,
         Modules\Galaxy\GalaxyProvider::class,
+        Modules\Economy\EconomyProvider::class,
 
         /*
          * Application Service Providers...
