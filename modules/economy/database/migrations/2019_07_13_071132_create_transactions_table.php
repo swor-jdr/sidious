@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedMediumInteger("account_from")->nullable()->index();
-            $table->unsignedMediumInteger("account_to")->index()->after("account_from");
+            $table->unsignedMediumInteger("account_to")->index();
             $table->unsignedBigInteger("amount")->default(0);
             $table->boolean("isCredit")->default(false);
             $table->string("motivation");
