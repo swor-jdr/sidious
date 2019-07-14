@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace Modules\Economy\Actions;
 
 use Lorisleiva\Actions\Action;
 use Modules\Economy\Models\Transaction;
