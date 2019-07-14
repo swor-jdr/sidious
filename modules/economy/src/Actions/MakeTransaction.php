@@ -2,6 +2,7 @@
 
 namespace Modules\Economy\Actions;
 
+use Modules\Economy\Events\TransactionConfirmed;
 use Modules\Economy\Exceptions\TransactionNotAllowed;
 use Lorisleiva\Actions\Action;
 use Modules\Economy\Models\Account;
@@ -20,7 +21,8 @@ class MakeTransaction extends Action
             "from" => "integer",
             "to" => "required|integer",
             "amount" => "required|integer",
-            "isCredit" => "required|boolean"
+            "isCredit" => "required|boolean",
+            "motivation" => "required|string|min:3"
         ];
     }
 
@@ -45,12 +47,15 @@ class MakeTransaction extends Action
          * PROCEED
          */
         try {
-             return Transaction::create([
+            $transaction = Transaction::create([
                 "from" => ($from) ? $from->id : null,
                 "to" => $to->id,
                 "amount" => $this->get("amount"),
-                "isCredit" => $this->get("isCredit")
+                "isCredit" => $this->get("isCredit"),
+                "motivation" => $this->get("motivation")
             ]);
+            event(new TransactionConfirmed($transaction));
+            return $transaction;
         } catch (\Exception $exception) {
             throw $exception;
         }
