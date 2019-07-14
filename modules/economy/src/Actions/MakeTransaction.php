@@ -39,8 +39,8 @@ class MakeTransaction extends Action
         $from = ($this->get("from")) ? Account::find($this->get("from")) : null;
         $to = Account::findOrFail($this->get("to"));
         if($this->get('amount') < 0) throw new TransactionNotAllowed();
-        if(!$from->account->canPay($this->get("amount"))) {
-            throw new TransactionNotAllowed("Not enough funds");
+        if($from) {
+            if(!$from->canPay($this->get("amount"))) throw new TransactionNotAllowed("Not enough funds");
         }
 
         /*
@@ -48,8 +48,8 @@ class MakeTransaction extends Action
          */
         try {
             $transaction = Transaction::create([
-                "from" => ($from) ? $from->id : null,
-                "to" => $to->id,
+                "account_from" => ($from) ? $from->id : null,
+                "account_to" => $to->id,
                 "amount" => $this->get("amount"),
                 "isCredit" => $this->get("isCredit"),
                 "motivation" => $this->get("motivation")
