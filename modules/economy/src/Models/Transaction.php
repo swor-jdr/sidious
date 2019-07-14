@@ -12,12 +12,12 @@ class Transaction extends Model
 
     public function to()
     {
-        return $this->belongsTo(Account::class, "to");
+        return $this->belongsTo(Account::class, "account_to");
     }
 
     public function from()
     {
-        return $this->belongsTo(Account::class, "from");
+        return $this->belongsTo(Account::class, "account_from");
     }
 
     /**
@@ -29,12 +29,12 @@ class Transaction extends Model
 
         static::created(function ($model) {
             $model->to->updateBalance($model->amount, $model->isCredit);
-            $model->from->updateBalance($model->amount, !$model->isCredit);
+            if($model->account_from) $model->from->updateBalance($model->amount, !$model->isCredit);
         });
 
         static::deleted(function ($model) {
             $model->to->updateBalance($model->amount, !$model->isCredit);
-            $model->from->updateBalance($model->amount, $model->isCredit);
+            if($model->account_from) $model->from->updateBalance($model->amount, $model->isCredit);
         });
     }
 }

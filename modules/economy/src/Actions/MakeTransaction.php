@@ -17,7 +17,7 @@ class MakeTransaction extends Action
     public function rules()
     {
         return [
-            "from" => "required|integer",
+            "from" => "integer",
             "to" => "required|integer",
             "amount" => "required|integer",
             "isCredit" => "required|boolean"
@@ -34,10 +34,10 @@ class MakeTransaction extends Action
         /*
          * CHECKS
          */
-        $from = Account::findOrFail($this->get("from"));
+        $from = ($this->get("from")) ? Account::find($this->get("from")) : null;
         $to = Account::findOrFail($this->get("to"));
         if($this->get('amount') < 0) throw new TransactionNotAllowed();
-        if($from->account->balance < $this->get("amount")) {
+        if(!$from->account->canPay($this->get("amount"))) {
             throw new TransactionNotAllowed("Not enough funds");
         }
 
@@ -46,7 +46,7 @@ class MakeTransaction extends Action
          */
         try {
              return Transaction::create([
-                "from" => $from->id,
+                "from" => ($from) ? $from->id : null,
                 "to" => $to->id,
                 "amount" => $this->get("amount"),
                 "isCredit" => $this->get("isCredit")

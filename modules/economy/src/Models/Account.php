@@ -64,4 +64,15 @@ class Account extends Model
     {
         return $this->belongsTo(Fiche::class);
     }
+
+    /**
+     * Checks if account can pay a given amount
+     *
+     * @param int $amount
+     * @return bool
+     */
+    public function canPay(int $amount)
+    {
+        return ($this->balance >= $amount);
+    }
 }
