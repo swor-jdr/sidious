@@ -3,6 +3,7 @@
 namespace Modules\Economy\Actions;
 
 use Lorisleiva\Actions\Action;
+use Modules\Economy\Events\TransactionCancelled;
 use Modules\Economy\Models\Transaction;
 
 class CancelTransaction extends Action
@@ -27,7 +28,8 @@ class CancelTransaction extends Action
     public function handle()
     {
         try {
-            Transaction::findOrFail($this->get("transaction_id"))->delete();
+            $transaction = Transaction::findOrFail($this->get("transaction_id"))->delete();
+            event(new TransactionCancelled($transaction));
         } catch (\Exception $exception) {
             throw $exception;
         }
