@@ -1,18 +1,17 @@
 <?php
-
-namespace Modules\Galaxy\Models;
+namespace Modules\Economy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Modules\Economy\Traits\HasCompanies;
 use Modules\Economy\Traits\HasEconomy;
+use Modules\Galaxy\Models\Planet;
 use Nicolasey\Personnages\Models\Personnage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Planet extends Model
+class Company extends Model
 {
-    use SoftDeletes, HasSlug, HasCompanies, HasEconomy;
+    use SoftDeletes, HasEconomy, HasSlug;
 
     protected $guarded = [];
 
@@ -27,17 +26,17 @@ class Planet extends Model
     }
 
     /**
-     * Planet's secteur
+     * Company location
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function secteur()
+    public function planet()
     {
-        return $this->belongsTo(Secteur::class);
+        return $this->belongsTo(Planet::class);
     }
 
     /**
-     * Planet's managers
+     * Personnages allowed to manage this company
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
