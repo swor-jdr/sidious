@@ -16,7 +16,7 @@ class CreateFichesTable extends Migration
         Schema::create('fiches', function (Blueprint $table) {
             $table->increments('id');
             $table->morphs("owner");
-            $table->unsignedBigInteger("balance")->default(0);
+            $table->bigInteger("balance")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
