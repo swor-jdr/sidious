@@ -28,4 +28,9 @@ class ObjectType extends Model
     {
         return $this->hasMany(Object::class);
     }
+
+    public function improvements()
+    {
+        return $this->hasMany(Improvement::class);
+    }
 }
