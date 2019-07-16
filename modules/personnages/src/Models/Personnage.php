@@ -10,7 +10,7 @@ use Modules\Personnages\Events\PersonnageUpdated;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\Tags\HasSlug;
+use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Personnage extends Model implements HasMedia
