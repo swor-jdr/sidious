@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 
 /**
  * Object classification (without improvements)
@@ -14,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
  */
 class Object extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, HasTags;
 
     /**
      * Get the options for generating the slug.
