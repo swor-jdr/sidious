@@ -153,12 +153,12 @@ return [
         Modules\Forum\ForumServiceProvider::class,
         Modules\Galaxy\GalaxyProvider::class,
         Modules\Economy\EconomyProvider::class,
+        Modules\Inventory\Providers\InventoryProvider::class,
         Modules\Personnages\PersonnageServiceProvider::class,
         Modules\Personnages\PersonnageEventServiceProvider::class,
         Modules\Factions\GroupsServiceProvider::class,
         Modules\Factions\GroupsEventServiceProvider::class,
         Modules\Holonews\BlogServiceProvider::class,
-
 
         /*
          * Application Service Providers...
