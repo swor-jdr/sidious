@@ -159,6 +159,7 @@ return [
         Modules\Factions\GroupsEventServiceProvider::class,
         Modules\Holonews\BlogServiceProvider::class,
 
+
         /*
          * Application Service Providers...
          */
