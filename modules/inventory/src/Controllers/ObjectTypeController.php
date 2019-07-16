@@ -29,4 +29,51 @@ class ObjectTypeController extends Controller
             throw $exception;
         }
     }
+
+    /**
+     * Show object type with objects
+     *
+     * @param ObjectType $objectType
+     * @return ObjectType
+     */
+    public function show(ObjectType $objectType)
+    {
+        return $objectType->load("objects");
+    }
+
+    /**
+     * Update object type
+     *
+     * @param ObjectType $objectType
+     * @return ObjectType
+     * @throws \Exception
+     */
+    public function update(ObjectType $objectType)
+    {
+        $data = request()->only("name");
+
+        try {
+            $objectType->update($data);
+            return $objectType;
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
+    /**
+     * Delete object type
+     *
+     * @param ObjectType $objectType
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(ObjectType $objectType)
+    {
+        try {
+            $objectType->delete();
+            return response()->json();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
 }
