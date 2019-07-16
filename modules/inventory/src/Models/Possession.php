@@ -32,4 +32,9 @@ class Possession extends Model
     {
         return $this->morphTo("owner");
     }
+
+    public function improvements()
+    {
+        return $this->belongsToMany(Improvement::class);
+    }
 }
