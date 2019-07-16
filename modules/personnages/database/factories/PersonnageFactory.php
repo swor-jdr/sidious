@@ -12,7 +12,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\Nicolasey\Personnages\Models\Personnage::class, function (Faker $faker) {
+$factory->define(\Modules\Personnages\Models\Personnage::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
     ];
