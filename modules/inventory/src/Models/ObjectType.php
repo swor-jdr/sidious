@@ -23,4 +23,9 @@ class ObjectType extends Model
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
     }
+
+    public function objects()
+    {
+        return $this->hasMany(Object::class);
+    }
 }
