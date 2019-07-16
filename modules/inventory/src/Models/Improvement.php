@@ -4,10 +4,11 @@ namespace Modules\Inventory\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Tags\HasTags;
 
 class Improvement extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasTags;
 
     protected $guarded = [];
 
