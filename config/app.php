@@ -154,6 +154,8 @@ return [
         Modules\Forum\ForumServiceProvider::class,
         Modules\Galaxy\GalaxyProvider::class,
         Modules\Economy\EconomyProvider::class,
+        Modules\Personnages\PersonnageServiceProvider::class,
+        Modules\Personnages\PersonnageEventServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -39,7 +39,8 @@
             "App\\": "app/",
             "Modules\\Forum\\": "modules/forum/src",
             "Modules\\Galaxy\\": "modules/galaxy/src",
-            "Modules\\Economy\\": "modules/economy/src"
+            "Modules\\Economy\\": "modules/economy/src",
+            "Modules\\Personnages\\": "modules/personnages/src"
         }
     },
     "autoload-dev": {
@@ -47,7 +48,8 @@
             "Tests\\": "tests/",
             "Modules\\Forum\\Tests\\": "modules/forum/tests",
             "Modules\\Galaxy\\Tests\\": "modules/galaxy/tests",
-            "Modules\\Economy\\Tests\\": "modules/economy/tests"
+            "Modules\\Economy\\Tests\\": "modules/economy/tests",
+            "Modules\\Personnages\\Tests\\": "modules/personnages/tests"
         }
     },
     "extra": {
