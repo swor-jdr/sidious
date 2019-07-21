@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -31,7 +30,7 @@ class Topic extends Model
 
     public function author()
     {
-        return $this->belongsTo(Personnage::class, "author_id");
+        return $this->belongsTo(Personnage::class, "author");
     }
 
     public function posts()
