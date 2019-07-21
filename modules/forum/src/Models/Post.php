@@ -3,7 +3,7 @@ namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Nicolasey\Personnages\Models\Personnage;
+use Modules\Personnages\Models\Personnage;
 
 class Post extends Model
 {

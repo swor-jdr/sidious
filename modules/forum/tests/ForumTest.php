@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Modules\Forum\Models\Forum;
 use Modules\Forum\Models\Topic;
-use Nicolasey\Personnages\Models\Personnage;
+use Modules\Personnages\Models\Personnage;
 use Tests\TestCase;
 
 class ForumTest extends TestCase

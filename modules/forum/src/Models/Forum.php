@@ -4,6 +4,7 @@ namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Kalnoy\Nestedset\NodeTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -39,15 +40,36 @@ class Forum extends Model
         return $this->topicPosts()->latest("created_at");
     }
 
+    public function latestDescendantsPost()
+    {
+        $last = null;
+        foreach($this->descendants as $descendant) {
+            if($descendant->last) {
+                if($descendant->last->id > $last->id) $last = $descendant->last;
+            }
+        }
+        return $last;
+    }
+
+    /**
+     * Evaluate last post from descendants and topics
+     * Sets correct last post to this forum
+     *
+     * @return void
+     */
     public function evaluateLastPost()
     {
-        $collection = $this->latestTopicsPost()->get()->only("created_at", "id")->last();
-        $descendants = $this->descendants()->with("latestTopicsPost")->get()->only("id", "created_at");
-        foreach ($descendants as $descendant) $collection->merge($descendant->latestTopicsPost);
-        $last = $collection->sortBy("created_at")->last();
+        $last = Collection::make($this->latestDescendantsPost(), $this->latestTopicsPost())
+            ->last();
 
+        // Set last with correct answer
         $this->last_id = $last->id;
         $this->save();
+
+        // Spread the word if necessary
+        if($this->parent_id) {
+            if($this->parent->last->id < $last) $this->parent->evaluateLastPost();
+        }
     }
 
     public static function boot()

@@ -12,15 +12,27 @@ class ForumController extends Controller
 {
     use ValidatesRequests;
 
+    /**
+     * Get all main forums
+     *
+     * @return mixed
+     */
     public function index()
     {
-        return Forum::where("parent_id", null)->with("children", "children.last", "children.last.topic")
+        return Forum::where("parent_id", null)
+            ->with("children", "children.last", "children.last.topic", "children.last.author")
             ->get();
     }
 
+    /**
+     * Show a forum with direct children, last post and last post topic
+     *
+     * @param Forum $forum
+     * @return Forum
+     */
     public function show(Forum $forum)
     {
-        $forum->load("children", "children.last", "children.last.topic");
+        $forum->load("children", "children.last", "children.last.topic", "children.last.author");
         return $forum;
     }
 
@@ -70,19 +82,16 @@ class ForumController extends Controller
         $hasPostsAndMoved = ($hasMoved && $forum->last_post);
 
         try {
-            // Check new ancestors last post with ours
-            if($hasPostsAndMoved) {
-                // Build new breadcrumbs for given
-                $newAncestors = $newParent->getAncestors();
-                $newAncestors->prepend($newParent);
-
-                $this->setAncestorsLastPost($newAncestors, $forum->lastPost);
-            }
-
             $forum->update($data);
 
             // Check ancestors last post then
             if($hasPostsAndMoved) {
+                $newAncestors = $newParent->getAncestors();
+                $newAncestors->prepend($newParent);
+
+                $this->setAncestorsLastPost($newAncestors, $forum->lastPost);
+                unset($newAncestors, $newParent);
+
                 $ancestors = $forum->getAncestors();
                 $this->setAncestorsLastPost($ancestors, $forum->lastPost);
             }
@@ -122,15 +131,13 @@ class ForumController extends Controller
      */
     private function setAncestorsLastPost(Collection $ancestors, Post $lastPost = null)
     {
-        if(! $lastPost) $lastPost = $this->getLastPostFromForum($ancestors->first);
-
         foreach ($ancestors as $ancestor) {
             // if ancestor last post is newer, then we stop
-            $ancestorLastPostIsNewer = ($ancestor->lastPost->id > $lastPost->id);
-            if($ancestorLastPostIsNewer) break;
-
-            // Otherwise save this lastPost as last for the ancestor, and continue
-            $ancestor->last_post = $lastPost->id;
+            if($lastPost && $ancestor->lastPost) {
+                if(($ancestor->lastPost->id > $lastPost->id)) break;
+            }
+            // if we have not break yet, we evaluate last post
+            $ancestor->evaluateLastPost();
         }
     }
 }
