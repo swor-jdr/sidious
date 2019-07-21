@@ -7,6 +7,7 @@ use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Models\Assignation;
 use Modules\Factions\Models\Group;
 use Modules\Factions\Traits\InGroups;
+use Modules\Forum\Traits\PostsInForum;
 use Modules\Personnages\Events\PersonnageCreated;
 use Modules\Personnages\Events\PersonnageDeleted;
 use Modules\Personnages\Events\PersonnageUpdated;
@@ -18,7 +19,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Personnage extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups;
+    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups, PostsInForum;
 
     /**
      * The attributes that are mass assignable.
