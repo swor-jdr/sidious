@@ -82,19 +82,16 @@ class ForumController extends Controller
         $hasPostsAndMoved = ($hasMoved && $forum->last_post);
 
         try {
-            // Check new ancestors last post with ours
-            if($hasPostsAndMoved) {
-                // Build new breadcrumbs for given
-                $newAncestors = $newParent->getAncestors();
-                $newAncestors->prepend($newParent);
-
-                $this->setAncestorsLastPost($newAncestors, $forum->lastPost);
-            }
-
             $forum->update($data);
 
             // Check ancestors last post then
             if($hasPostsAndMoved) {
+                $newAncestors = $newParent->getAncestors();
+                $newAncestors->prepend($newParent);
+
+                $this->setAncestorsLastPost($newAncestors, $forum->lastPost);
+                unset($newAncestors, $newParent);
+
                 $ancestors = $forum->getAncestors();
                 $this->setAncestorsLastPost($ancestors, $forum->lastPost);
             }
