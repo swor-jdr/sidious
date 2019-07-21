@@ -53,6 +53,9 @@ class Forum extends Model
 
     /**
      * Evaluate last post from descendants and topics
+     * Sets correct last post to this forum
+     *
+     * @return void
      */
     public function evaluateLastPost()
     {
