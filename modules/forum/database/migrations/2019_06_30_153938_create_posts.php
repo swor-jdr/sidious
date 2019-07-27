@@ -17,7 +17,7 @@ class CreatePosts extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedMediumInteger("author");
+            $table->unsignedMediumInteger("author_id");
             $table->unsignedMediumInteger("topic_id");
             $table->text("content");
         });
