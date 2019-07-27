@@ -150,8 +150,14 @@ return [
         /*
          * Package Service Providers...
          */
-        Unoappdev\PubnubDriver\PubnubServiceProvider::class,
-        
+        Modules\Forum\ForumServiceProvider::class,
+        Modules\Galaxy\GalaxyProvider::class,
+        Modules\Economy\EconomyProvider::class,
+        Modules\Personnages\PersonnageServiceProvider::class,
+        Modules\Personnages\PersonnageEventServiceProvider::class,
+        Modules\Factions\GroupsServiceProvider::class,
+        Modules\Factions\GroupsEventServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -159,6 +165,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],

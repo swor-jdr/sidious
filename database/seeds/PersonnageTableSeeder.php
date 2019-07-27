@@ -24,12 +24,12 @@ class PersonnageTableSeeder extends Seeder
             "email" => "vador@sith.gal"
         ]);
 
-        factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
+        factory(\Modules\Personnages\Models\Personnage::class)->create([
             "owner_id" => $user->id,
             "name" => $this->faker->darkSide,
         ]);
 
-        factory(\Nicolasey\Personnages\Models\Personnage::class)->create([
+        factory(\Modules\Personnages\Models\Personnage::class)->create([
             "owner_id" => $user->id,
             "name" => $this->faker->lightSide,
         ]);

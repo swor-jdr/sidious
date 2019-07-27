@@ -7,15 +7,30 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-cors": "^0.11.2",
+        "beyondcode/nova-tinker-tool": "^1.0",
+        "christophrumpel/nova-notifications": "^1.0",
+        "ebess/advanced-nova-media-library": "^2.7",
+        "emilianotisato/nova-tinymce": "^0.5.4",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.7.*",
+        "inani/laravel-nova-configuration": "^1.3",
+        "inspheric/nova-defaultable": "^1.2",
+        "joffreyc22/nova-french-datetimepicker": "dev-master",
+        "kalnoy/nestedset": "^4.3",
+        "laravel/framework": "5.8.*",
+        "laravel/nova": "*",
         "laravel/tinker": "^1.0",
         "lorisleiva/laravel-actions": "^0.1.2",
-        "nicolasey/personnage": "0.1",
+        "michielkempen/nova-polymorphic-field": "^1.0",
+        "my-com/laravel-conditional-actions": "^1.0@beta",
+        "nova-cards/system-information-card": "^1.0",
         "predis/predis": "^1.1",
-        "silber/bouncer": "v1.0.0-rc.3",
-        "tymon/jwt-auth": "1.0.0-rc.3",
-        "unoapp-dev/laravel-pubnub": "^1.0"
+        "silber/bouncer": "v1.0.0-rc.5",
+        "spatie/laravel-medialibrary": "^7.6",
+        "spatie/laravel-sluggable": "^2.1",
+        "spatie/laravel-tags": "^2.4",
+        "timothyasp/nova-color-field": "^1.0",
+        "titasgailius/search-relations": "^1.0",
+        "tymon/jwt-auth": "1.0.0-rc.4.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",
@@ -32,12 +47,22 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Modules\\Forum\\": "modules/forum/src",
+            "Modules\\Galaxy\\": "modules/galaxy/src",
+            "Modules\\Economy\\": "modules/economy/src",
+            "Modules\\Personnages\\": "modules/personnages/src",
+            "Modules\\Factions\\": "modules/factions/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Modules\\Forum\\Tests\\": "modules/forum/tests",
+            "Modules\\Galaxy\\Tests\\": "modules/galaxy/tests",
+            "Modules\\Economy\\Tests\\": "modules/economy/tests",
+            "Modules\\Personnages\\Tests\\": "modules/personnages/tests",
+            "Modules\\Factions\\Tests\\": "modules/factions/tests"
         }
     },
     "extra": {
@@ -66,7 +91,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": [
-        { "type": "vcs", "url": "https://github.com/nicolasey/personnage" },
-        { "type": "vcs", "url": "https://github.com/nicolasey/forum" }
+        {
+            "type": "path",
+            "url": "./nova"
+        }
     ]
 }
