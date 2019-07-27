@@ -3,15 +3,28 @@ namespace Modules\Factions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Economy\Traits\HasEconomy;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Group extends Model
+class Group extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, HasEconomy, HasMediaTrait;
 
     protected $table = "groups";
     protected $guarded = [];
+
+    /**
+     * Register media collections for the personnage
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('image')->singleFile();
+    }
 
     /**
      * Filter secret groups
