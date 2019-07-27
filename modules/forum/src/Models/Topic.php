@@ -51,4 +51,9 @@ class Topic extends Model
             $model->posts()->delete();
         });
     }
+
+    public function participants()
+    {
+        return $this->belongsToMany(Personnage::class);
+    }
 }
