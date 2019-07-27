@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasCompanies;
 use Modules\Economy\Traits\HasEconomy;
 use Nicolasey\Personnages\Models\Personnage;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Planet extends Model
+class Planet extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug, HasCompanies, HasEconomy;
+    use SoftDeletes, HasSlug, HasCompanies, HasEconomy, HasMediaTrait;
 
     protected $guarded = [];
 
@@ -24,6 +26,16 @@ class Planet extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Media collections
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('planets_image')->singleFile();
     }
 
     /**

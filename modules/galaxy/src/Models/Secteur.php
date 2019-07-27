@@ -5,12 +5,14 @@ namespace Modules\Galaxy\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Secteur extends Model
+class Secteur extends Model implements HasMedia
 {
-    use SoftDeletes, NodeTrait, HasSlug;
+    use SoftDeletes, NodeTrait, HasSlug, HasMediaTrait;
 
     /**
      * Get the options for generating the slug.
@@ -20,6 +22,16 @@ class Secteur extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Media collections
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('secteurs_image')->singleFile();
     }
 
     protected $guarded = [];
