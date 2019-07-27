@@ -2,39 +2,34 @@
 
 namespace App\Nova;
 
-use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
-use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use MichielKempen\NovaPolymorphicField\HasPolymorphicFields;
+use MichielKempen\NovaPolymorphicField\PolymorphicField;
 
-class Personnage extends Resource
+class Assignation extends Resource
 {
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Joueurs';
+    use HasPolymorphicFields;
+
+    public static $group = "Groupes";
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \Modules\Personnages\Models\Personnage::class;
+    public static $model = \Modules\Factions\Models\Assignation::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -43,15 +38,6 @@ class Personnage extends Resource
      */
     public static $search = [
         'id',
-    ];
-
-    /**
-     * The relationship columns that should be searched.
-     *
-     * @var array
-     */
-    public static $searchRelations = [
-        'owner' => ['email'],
     ];
 
     /**
@@ -65,36 +51,18 @@ class Personnage extends Resource
         return [
             ID::make()->sortable(),
 
-            Files::make("Avatar", 'avatar')
-                ->hideFromIndex(),
+            MorphTo::make("Affilié", "element")
+                ->types([
+                    Personnage::class,
+                ]),
 
-            Text::make('Nom', 'name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            BelongsTo::make('Groupe', 'group', 'App\Nova\Faction'),
 
-            BelongsTo::make('Propriétaire', 'owner', 'App\Nova\User'),
-
-
-
-            Text::make("Job", "job")
-                ->nullable(),
-
-            Text::make("Titre", "title")
-                ->nullable(),
-
-            NovaTinyMCE::make("Biographie", "bio")
-                ->nullable()
-                ->onlyOnForms(),
-
-            Boolean::make("En vie", "alive")
+            Boolean::make("Leader", "isLeader")
                 ->trueValue(true)
                 ->falseValue(false),
 
-            Boolean::make("Actif", "active")
-                ->trueValue(true)
-                ->falseValue(false),
-
-            Boolean::make("Compte Staff", "isStaff")
+            Boolean::make("Principale", "isMain")
                 ->trueValue(true)
                 ->falseValue(false),
         ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc220fcd92841bd2f5401d928d70430b",
+    "content-hash": "7b48f4da7762e529136b87cd1d2cc5c0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1077,6 +1077,49 @@
             "time": "2019-03-30T08:05:26+00:00"
         },
         {
+            "name": "inspheric/nova-defaultable",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inspheric/nova-defaultable-fields.git",
+                "reference": "e1d9efbcab0b94d983f81d5f10f217551fcfad25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inspheric/nova-defaultable-fields/zipball/e1d9efbcab0b94d983f81d5f10f217551fcfad25",
+                "reference": "e1d9efbcab0b94d983f81d5f10f217551fcfad25",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inspheric\\NovaDefaultable\\DefaultableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inspheric\\NovaDefaultable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Default values for Nova fields when creating resources.",
+            "keywords": [
+                "default",
+                "field",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-05-29T15:38:50+00:00"
+        },
+        {
             "name": "intervention/image",
             "version": "2.5.0",
             "source": {
@@ -1926,6 +1969,47 @@
                 "zip"
             ],
             "time": "2018-02-09T09:26:57+00:00"
+        },
+        {
+            "name": "michielkempen/nova-polymorphic-field",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michielkempen/nova-polymorphic-field.git",
+                "reference": "6229f8bed49bf7a15021892de6330e24c572511d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michielkempen/nova-polymorphic-field/zipball/6229f8bed49bf7a15021892de6330e24c572511d",
+                "reference": "6229f8bed49bf7a15021892de6330e24c572511d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MichielKempen\\NovaPolymorphicField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MichielKempen\\NovaPolymorphicField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field container allowing to depend on other fields values",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-11-08T12:03:06+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5076,6 +5160,49 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "timothyasp/nova-color-field",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timothyasp/nova-color-field.git",
+                "reference": "b7df196fcf2b78daff06fbafe553fdeed4e0d2d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timothyasp/nova-color-field/zipball/b7df196fcf2b78daff06fbafe553fdeed4e0d2d8",
+                "reference": "b7df196fcf2b78daff06fbafe553fdeed4e0d2d8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Timothyasp\\Color\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Timothyasp\\Color\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova Color Picker field.",
+            "keywords": [
+                "color picker",
+                "field",
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-11-12T04:54:15+00:00"
         },
         {
             "name": "titasgailius/search-relations",
