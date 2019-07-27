@@ -3,18 +3,20 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Company extends Resource
+class EconomyLine extends Resource
 {
     public static $group = "Economie";
 
     public static function label()
     {
-        return "Entreprises";
+        return "Lignes Fiche";
     }
 
     /**
@@ -22,14 +24,14 @@ class Company extends Resource
      *
      * @var string
      */
-    public static $model = \Modules\Economy\Models\Company::class;
+    public static $model = \Modules\Economy\Models\EconomyLine::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -37,7 +39,7 @@ class Company extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id',
     ];
 
     /**
@@ -46,7 +48,7 @@ class Company extends Resource
      * @var array
      */
     public static $searchRelations = [
-        'planet' => ['name'],
+        'fiche' => ['id'],
     ];
 
     /**
@@ -60,11 +62,13 @@ class Company extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make('Nom', 'name')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            Number::make("Montant", "amount"),
 
-            BelongsTo::make("Planète", "planet", 'App\Nova\Planet'),
+            Boolean::make("Crédit ?", "isCredit"),
+
+            Text::make("Motif", "motivation"),
+
+            BelongsTo::make("Fiche"),
         ];
     }
 
