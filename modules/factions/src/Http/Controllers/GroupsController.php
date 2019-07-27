@@ -2,7 +2,7 @@
 namespace Modules\Factions\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Nicolasey\Groups\Models\Group;
+use Modules\Factions\Models\Group;
 
 class GroupsController extends Controller
 {

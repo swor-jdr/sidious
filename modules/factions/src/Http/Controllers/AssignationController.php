@@ -2,8 +2,8 @@
 namespace Modules\Factions\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Nicolasey\Groups\Models\Group;
-use Nicolasey\Groups\Models\Assignation;
+use Modules\Factions\Models\Group;
+use Modules\Factions\Models\Assignation;
 
 class AssignationController extends Controller
 {
