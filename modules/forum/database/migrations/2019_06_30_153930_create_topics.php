@@ -16,7 +16,7 @@ class CreateTopics extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->unsignedMediumInteger("author");
+            $table->unsignedMediumInteger("author_id");
             $table->unsignedMediumInteger("forum_id");
             $table->softDeletes();
             $table->string("name");
