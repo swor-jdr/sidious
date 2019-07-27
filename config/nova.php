@@ -91,4 +91,6 @@ return [
 
     'pagination' => 'simple',
 
+    'tinymce_api_key' => env('TINYMCE_API_KEY'),
+
 ];
