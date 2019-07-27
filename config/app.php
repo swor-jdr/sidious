@@ -155,6 +155,8 @@ return [
         Modules\Economy\EconomyProvider::class,
         Modules\Personnages\PersonnageServiceProvider::class,
         Modules\Personnages\PersonnageEventServiceProvider::class,
+        Modules\Factions\GroupsServiceProvider::class,
+        Modules\Factions\GroupsEventServiceProvider::class,
 
         /*
          * Application Service Providers...
