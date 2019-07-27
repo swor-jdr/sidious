@@ -8,6 +8,7 @@
         "php": "^7.1.3",
         "barryvdh/laravel-cors": "^0.11.2",
         "christophrumpel/nova-notifications": "^1.0",
+        "ebess/advanced-nova-media-library": "^2.7",
         "emilianotisato/nova-tinymce": "^0.5.4",
         "fideloper/proxy": "^4.0",
         "kalnoy/nestedset": "^4.3",
