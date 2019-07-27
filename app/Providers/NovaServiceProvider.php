@@ -70,6 +70,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new \Inani\LaravelNovaConfiguration\LaravelNovaConfiguration(),
             new \Christophrumpel\NovaNotifications\NovaNotifications(),
+            new \Beyondcode\TinkerTool\Tinker(),
         ];
     }
 

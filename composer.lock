@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffa5dc288a82cb2066268250af14f0c0",
+    "content-hash": "91143782f9e9b294be4a6c4e439952e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -119,6 +119,57 @@
                 "laravel"
             ],
             "time": "2019-02-26T18:08:30+00:00"
+        },
+        {
+            "name": "beyondcode/nova-tinker-tool",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beyondcode/nova-tinker-tool.git",
+                "reference": "d9738e99bb5cde02128e2d1aef4ea1c07533332c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beyondcode/nova-tinker-tool/zipball/d9738e99bb5cde02128e2d1aef4ea1c07533332c",
+                "reference": "d9738e99bb5cde02128e2d1aef4ea1c07533332c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "laravel/tinker": "^1.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Beyondcode\\TinkerTool\\TinkerToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Beyondcode\\TinkerTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de",
+                    "homepage": "https://beyondco.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use Laravel tinker from Nova.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-04T08:08:24+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2235,6 +2286,47 @@
                 "php"
             ],
             "time": "2019-05-25T20:07:01+00:00"
+        },
+        {
+            "name": "nova-cards/system-information-card",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nova-cards/system-information-card.git",
+                "reference": "5645ffc900769298b174e0cdd251d6ab394de36c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nova-cards/system-information-card/zipball/5645ffc900769298b174e0cdd251d6ab394de36c",
+                "reference": "5645ffc900769298b174e0cdd251d6ab394de36c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaCards\\SystemInformationCard\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaCards\\SystemInformationCard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova card.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-12-10T07:22:25+00:00"
         },
         {
             "name": "opis/closure",
