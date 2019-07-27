@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Kalnoy\Nestedset\NodeTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Forum extends Model
+class Forum extends Model implements HasMedia
 {
-    use SoftDeletes, NodeTrait, HasSlug;
+    use SoftDeletes, NodeTrait, HasSlug, HasMediaTrait;
 
     /**
      * Get the options for generating the slug.
@@ -21,6 +23,16 @@ class Forum extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    /**
+     * Media collections
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('forums_image')->singleFile();
     }
 
     protected $guarded = [];
