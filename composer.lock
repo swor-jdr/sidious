@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b1c9898fb59ed1eba66558d986bd130",
+    "content-hash": "ffa5dc288a82cb2066268250af14f0c0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -985,6 +985,47 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
+            "name": "inani/laravel-nova-configuration",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akiyamaSM/laravel-nova-configuration.git",
+                "reference": "a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akiyamaSM/laravel-nova-configuration/zipball/a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96",
+                "reference": "a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inani\\LaravelNovaConfiguration\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inani\\LaravelNovaConfiguration\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-30T08:05:26+00:00"
+        },
+        {
             "name": "intervention/image",
             "version": "2.5.0",
             "source": {
@@ -1141,6 +1182,57 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "joffreyc22/nova-french-datetimepicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JoffreyC22/nova-french-datetimepicker.git",
+                "reference": "463e7d1710e73ec02d0879e30cb56ec9374f881a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JoffreyC22/nova-french-datetimepicker/zipball/463e7d1710e73ec02d0879e30cb56ec9374f881a",
+                "reference": "463e7d1710e73ec02d0879e30cb56ec9374f881a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JoffreyC22\\FrenchDatetimepicker\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JoffreyC22\\FrenchDatetimepicker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joffrey Capitaine",
+                    "email": "joffrey.capitaine22@gmail.com"
+                }
+            ],
+            "description": "French datetimepicker for Laravel Nova",
+            "keywords": [
+                "datetime",
+                "french",
+                "laravel",
+                "nova",
+                "picker"
+            ],
+            "abandoned": true,
+            "time": "2018-09-09T21:48:06+00:00"
         },
         {
             "name": "kalnoy/nestedset",
@@ -7409,6 +7501,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "joffreyc22/nova-french-datetimepicker": 20,
         "my-com/laravel-conditional-actions": 10
     },
     "prefer-stable": true,

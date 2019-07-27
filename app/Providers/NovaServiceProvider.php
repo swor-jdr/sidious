@@ -68,6 +68,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
+            new \Inani\LaravelNovaConfiguration\LaravelNovaConfiguration(),
             new \Christophrumpel\NovaNotifications\NovaNotifications(),
         ];
     }
