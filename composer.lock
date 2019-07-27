@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1d9da27e463f42253e924043d32cb39",
+    "content-hash": "91143782f9e9b294be4a6c4e439952e8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -121,6 +121,57 @@
             "time": "2019-02-26T18:08:30+00:00"
         },
         {
+            "name": "beyondcode/nova-tinker-tool",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beyondcode/nova-tinker-tool.git",
+                "reference": "d9738e99bb5cde02128e2d1aef4ea1c07533332c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beyondcode/nova-tinker-tool/zipball/d9738e99bb5cde02128e2d1aef4ea1c07533332c",
+                "reference": "d9738e99bb5cde02128e2d1aef4ea1c07533332c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "laravel/tinker": "^1.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Beyondcode\\TinkerTool\\TinkerToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Beyondcode\\TinkerTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de",
+                    "homepage": "https://beyondco.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use Laravel tinker from Nova.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-04T08:08:24+00:00"
+        },
+        {
             "name": "cakephp/chronos",
             "version": "1.2.8",
             "source": {
@@ -176,6 +227,53 @@
                 "time"
             ],
             "time": "2019-06-17T15:19:18+00:00"
+        },
+        {
+            "name": "christophrumpel/nova-notifications",
+            "version": "1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/christophrumpel/nova-notifications.git",
+                "reference": "ae6974f9e1d1dca4bb42bc5ffda328699f0a869e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/christophrumpel/nova-notifications/zipball/ae6974f9e1d1dca4bb42bc5ffda328699f0a869e",
+                "reference": "ae6974f9e1d1dca4bb42bc5ffda328699f0a869e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "~3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Christophrumpel\\NovaNotifications\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Christophrumpel\\NovaNotifications\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for handling Laravel Notifications.",
+            "keywords": [
+                "laravel",
+                "notifications",
+                "nova"
+            ],
+            "time": "2019-03-05T15:08:08+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -623,6 +721,49 @@
             "time": "2019-03-31T00:38:28+00:00"
         },
         {
+            "name": "ebess/advanced-nova-media-library",
+            "version": "2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ebess/advanced-nova-media-library.git",
+                "reference": "8501c422579b4c536a9248a8253e1c594446ec6c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ebess/advanced-nova-media-library/zipball/8501c422579b4c536a9248a8253e1c594446ec6c",
+                "reference": "8501c422579b4c536a9248a8253e1c594446ec6c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.6",
+                "php": ">=7.1.0",
+                "spatie/laravel-medialibrary": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ebess\\AdvancedNovaMediaLibrary\\AdvancedNovaMediaLibraryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ebess\\AdvancedNovaMediaLibrary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Nova tools for managing the Spatie media library.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-05-20T07:09:19+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.10",
             "source": {
@@ -679,6 +820,49 @@
                 "validator"
             ],
             "time": "2019-07-19T20:52:08+00:00"
+        },
+        {
+            "name": "emilianotisato/nova-tinymce",
+            "version": "0.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emilianotisato/nova-tinymce.git",
+                "reference": "97f5d1351ccb8f9df86796e37dd2380a04ffa26d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emilianotisato/nova-tinymce/zipball/97f5d1351ccb8f9df86796e37dd2380a04ffa26d",
+                "reference": "97f5d1351ccb8f9df86796e37dd2380a04ffa26d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Emilianotisato\\NovaTinyMCE\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emilianotisato\\NovaTinyMCE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Nova package allow you to use TinyMCE editor for text areas.You can customize the editor options and... you can upload images to your server and put them rigth there on the text without leaving the text editor!",
+            "keywords": [
+                "editor",
+                "laravel",
+                "nova",
+                "tiny"
+            ],
+            "time": "2018-11-17T17:21:30+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -852,6 +1036,47 @@
             "time": "2019-07-01T23:21:34+00:00"
         },
         {
+            "name": "inani/laravel-nova-configuration",
+            "version": "1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akiyamaSM/laravel-nova-configuration.git",
+                "reference": "a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akiyamaSM/laravel-nova-configuration/zipball/a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96",
+                "reference": "a7e213cb1ab5224c6cbfb774c5fcc81442f4fc96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Inani\\LaravelNovaConfiguration\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Inani\\LaravelNovaConfiguration\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-30T08:05:26+00:00"
+        },
+        {
             "name": "intervention/image",
             "version": "2.5.0",
             "source": {
@@ -1008,6 +1233,57 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "joffreyc22/nova-french-datetimepicker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JoffreyC22/nova-french-datetimepicker.git",
+                "reference": "463e7d1710e73ec02d0879e30cb56ec9374f881a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JoffreyC22/nova-french-datetimepicker/zipball/463e7d1710e73ec02d0879e30cb56ec9374f881a",
+                "reference": "463e7d1710e73ec02d0879e30cb56ec9374f881a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "JoffreyC22\\FrenchDatetimepicker\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JoffreyC22\\FrenchDatetimepicker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joffrey Capitaine",
+                    "email": "joffrey.capitaine22@gmail.com"
+                }
+            ],
+            "description": "French datetimepicker for Laravel Nova",
+            "keywords": [
+                "datetime",
+                "french",
+                "laravel",
+                "nova",
+                "picker"
+            ],
+            "abandoned": true,
+            "time": "2018-09-09T21:48:06+00:00"
         },
         {
             "name": "kalnoy/nestedset",
@@ -2010,6 +2286,47 @@
                 "php"
             ],
             "time": "2019-05-25T20:07:01+00:00"
+        },
+        {
+            "name": "nova-cards/system-information-card",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nova-cards/system-information-card.git",
+                "reference": "5645ffc900769298b174e0cdd251d6ab394de36c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nova-cards/system-information-card/zipball/5645ffc900769298b174e0cdd251d6ab394de36c",
+                "reference": "5645ffc900769298b174e0cdd251d6ab394de36c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaCards\\SystemInformationCard\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaCards\\SystemInformationCard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova card.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-12-10T07:22:25+00:00"
         },
         {
             "name": "opis/closure",
@@ -7276,6 +7593,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "joffreyc22/nova-french-datetimepicker": 20,
         "my-com/laravel-conditional-actions": 10
     },
     "prefer-stable": true,
