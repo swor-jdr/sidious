@@ -4,6 +4,7 @@ namespace Modules\Personnages\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
+use Modules\Factions\Traits\InGroups;
 use Modules\Personnages\Events\PersonnageCreated;
 use Modules\Personnages\Events\PersonnageDeleted;
 use Modules\Personnages\Events\PersonnageUpdated;
@@ -15,7 +16,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Personnage extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy;
+    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups;
 
     /**
      * The attributes that are mass assignable.
