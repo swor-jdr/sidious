@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -54,6 +55,9 @@ class Personnage extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Files::make("Avatar", 'avatar')
+                ->hideFromIndex(),
 
             Text::make('Nom', 'name')
                 ->sortable()
