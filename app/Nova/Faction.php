@@ -2,32 +2,25 @@
 
 namespace App\Nova;
 
-use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
-use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Modules\Factions\Models\Group;
+use Timothyasp\Color\Color;
 
-class Personnage extends Resource
+class Faction extends Resource
 {
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Joueurs';
+    public static $group = "Groupes";
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \Modules\Personnages\Models\Personnage::class;
+    public static $model = Group::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -42,16 +35,7 @@ class Personnage extends Resource
      * @var array
      */
     public static $search = [
-        'id',
-    ];
-
-    /**
-     * The relationship columns that should be searched.
-     *
-     * @var array
-     */
-    public static $searchRelations = [
-        'owner' => ['email'],
+        'id', 'name'
     ];
 
     /**
@@ -65,36 +49,29 @@ class Personnage extends Resource
         return [
             ID::make()->sortable(),
 
-            Files::make("Avatar", 'avatar')
-                ->hideFromIndex(),
-
             Text::make('Nom', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Propriétaire', 'owner', 'App\Nova\User'),
+            Color::make("Couleur", "color")
+                ->rules('required', 'max:255'),
 
-
-
-            Text::make("Job", "job")
+            NovaTinyMCE::make("Contenu", "content")
                 ->nullable(),
 
-            Text::make("Titre", "title")
-                ->nullable(),
-
-            NovaTinyMCE::make("Biographie", "bio")
-                ->nullable()
-                ->onlyOnForms(),
-
-            Boolean::make("En vie", "alive")
+            Boolean::make('Secret', 'isSecret')
                 ->trueValue(true)
                 ->falseValue(false),
 
-            Boolean::make("Actif", "active")
+            Boolean::make('Privé', 'isPrivate')
                 ->trueValue(true)
                 ->falseValue(false),
 
-            Boolean::make("Compte Staff", "isStaff")
+            Boolean::make('Faction', 'isFaction')
+                ->trueValue(true)
+                ->falseValue(false),
+
+            Boolean::make('Active', 'active')
                 ->trueValue(true)
                 ->falseValue(false),
         ];

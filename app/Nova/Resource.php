@@ -2,13 +2,14 @@
 
 namespace App\Nova;
 
+use Inspheric\NovaDefaultable\HasDefaultableFields;
 use Laravel\Nova\Resource as NovaResource;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Titasgailius\SearchRelations\SearchesRelations;
 
 abstract class Resource extends NovaResource
 {
-    use SearchesRelations;
+    use SearchesRelations, HasDefaultableFields;
 
     /**
      * Build an "index" query for the given resource.
