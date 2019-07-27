@@ -50,6 +50,16 @@ class Personnage extends Model implements HasMedia
     }
 
     /**
+     * Register media collections for the personnage
+     *
+     * @return void
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('avatar')->singleFile();
+    }
+
+    /**
      * User this personnage is owned by
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
