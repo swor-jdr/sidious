@@ -47,6 +47,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 "nicolas.sey@gmail.com",
                 "alexis59ber@gmail.com",
                 "gauvain.boiche@wanadoo.fr",
+                "camille.sautot@gmail.com",
             ]);
         });
     }
