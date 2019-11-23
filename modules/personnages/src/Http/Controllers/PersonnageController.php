@@ -21,7 +21,7 @@ class PersonnageController extends Controller
      */
     public function index()
     {
-        return Personnage::all();
+        return Personnage::with("groups")->all();
     }
 
     /**
@@ -43,7 +43,7 @@ class PersonnageController extends Controller
      */
     public function byOwner(int $id)
     {
-        return Personnage::of($id)->get();
+        return Personnage::of($id)->with("groups")->get();
     }
 
     /**
@@ -54,7 +54,7 @@ class PersonnageController extends Controller
      */
     public function show(Personnage $personnage)
     {
-        return $personnage;
+        return $personnage->load("owner", "groups");
     }
 
     public function showBySlug(string $slug)
