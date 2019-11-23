@@ -23,9 +23,9 @@ class Personnage extends Model implements HasMedia
      *
      * @var array
      */
-    protected $guarded = ['alive'];
+    protected $guarded = ['alive', 'owner_id'];
 
-    protected $hidden = ["deleted_at", "owner"];
+    protected $hidden = ["deleted_at"];
 
     public static $rules = [
         "name" => "unique:personnages|min:3|required",
@@ -40,7 +40,7 @@ class Personnage extends Model implements HasMedia
 
     /**
      * Get the options for generating the slug.
-     * 
+     *
      * @return mixed
      */
     public function getSlugOptions() : SlugOptions
