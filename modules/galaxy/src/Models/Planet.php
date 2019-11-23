@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasCompanies;
 use Modules\Economy\Traits\HasEconomy;
+use Modules\Factions\Traits\InGroups;
 use Nicolasey\Personnages\Models\Personnage;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -14,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Planet extends Model implements HasMedia
 {
-    use SoftDeletes, HasSlug, HasCompanies, HasEconomy, HasMediaTrait;
+    use SoftDeletes, HasSlug, HasCompanies, HasEconomy, HasMediaTrait, InGroups;
 
     protected $guarded = [];
 
