@@ -12,6 +12,7 @@ class GroupsServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->mapApiRoutes();
+        $this->mergeConfigFrom(__DIR__."/../config.php", "groups");
     }
 
     public function register()

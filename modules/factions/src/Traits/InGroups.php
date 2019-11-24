@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Factions\Traits;
 
+use Modules\Factions\Models\Assignation;
 use Modules\Factions\Models\Group;
 
 trait InGroups
@@ -10,9 +11,8 @@ trait InGroups
      *
      * @return mixed
      */
-    public function groups()
+    public function assignations()
     {
-        return $this->morphMany(Group::class, 'element', 'group_elements')
-            ->withPivot("isLeader", "isMain", "active");
+        return $this->morphMany(Assignation::class, 'element');
     }
 }

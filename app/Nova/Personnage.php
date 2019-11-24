@@ -82,6 +82,9 @@ class Personnage extends Resource
             Text::make("Titre", "title")
                 ->nullable(),
 
+            Text::make("Localisation", "location")
+                ->nullable(),
+
             NovaTinyMCE::make("Biographie", "bio")
                 ->nullable()
                 ->onlyOnForms(),
@@ -91,6 +94,10 @@ class Personnage extends Resource
                 ->falseValue(false),
 
             Boolean::make("Actif", "active")
+                ->trueValue(true)
+                ->falseValue(false),
+
+            Boolean::make("Forceux", "hasForce")
                 ->trueValue(true)
                 ->falseValue(false),
 
