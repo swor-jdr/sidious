@@ -14,6 +14,8 @@ use DB;
 
 class PersonnageController extends Controller
 {
+    protected $fields = ["name", "bio", "signature", "aversions", "affections", "job", "title", "hide", "owner_id", "location"];
+
     /**
      * Get all personnages
      *
@@ -54,7 +56,7 @@ class PersonnageController extends Controller
      */
     public function show(Personnage $personnage)
     {
-        return $personnage;
+        return $personnage->load("owner");
     }
 
     public function showBySlug(string $slug)
@@ -70,7 +72,7 @@ class PersonnageController extends Controller
      */
     public function store()
     {
-        $data = request()->only(["name", "bio", "signature", "aversions", "affections", "job", "title", "hide", "owner_id"]);
+        $data = request()->only($this->fields);
 
         try {
             $personnage = Personnage::create($data);
@@ -98,7 +100,7 @@ class PersonnageController extends Controller
      */
     public function update(Personnage $personnage)
     {
-        $data = request()->only(["name", "bio", "signature", "aversions", "affections", "job", "title", "hide"]);
+        $data = request()->only($this->fields);
 
         try {
             $personnage->update($data);

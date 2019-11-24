@@ -9,6 +9,7 @@ class Assignation extends Model
     protected $guarded = [];
     protected $hidden = ['group_id'];
     public $timestamps = false;
+    protected $with = ['group'];
 
     /**
      * Filter to find leader of the group

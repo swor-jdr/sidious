@@ -4,6 +4,8 @@ namespace Modules\Personnages\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
+use Modules\Factions\Models\Assignation;
+use Modules\Factions\Models\Group;
 use Modules\Factions\Traits\InGroups;
 use Modules\Personnages\Events\PersonnageCreated;
 use Modules\Personnages\Events\PersonnageDeleted;
@@ -23,9 +25,11 @@ class Personnage extends Model implements HasMedia
      *
      * @var array
      */
-    protected $guarded = ['alive'];
+    protected $guarded = ['alive', 'owner_id'];
 
-    protected $hidden = ["deleted_at", "owner"];
+    protected $hidden = ["deleted_at"];
+
+    protected $with = ['assignations'];
 
     public static $rules = [
         "name" => "unique:personnages|min:3|required",
@@ -40,7 +44,7 @@ class Personnage extends Model implements HasMedia
 
     /**
      * Get the options for generating the slug.
-     * 
+     *
      * @return mixed
      */
     public function getSlugOptions() : SlugOptions

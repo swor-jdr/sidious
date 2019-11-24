@@ -54,6 +54,7 @@ class Assignation extends Resource
             MorphTo::make("Affilié", "element")
                 ->types([
                     Personnage::class,
+                    Planet::class,
                 ]),
 
             BelongsTo::make('Groupe', 'group', 'App\Nova\Faction'),
