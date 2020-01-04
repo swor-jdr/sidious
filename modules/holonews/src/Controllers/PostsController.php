@@ -1,0 +1,44 @@
+<?php
+namespace Modules\Holonews\Controllers;
+
+use Wink\WinkPost;
+
+class PostsController
+{
+    /**
+     * Get all posts with tags and author
+     *
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
+    public function all()
+    {
+        $all = WinkPost::with(['author', 'tags'])
+            ->when(request()->has('search'), function ($q) {
+                $q->where('title', 'LIKE', '%'.request('search').'%');
+            })
+            ->when(request('author_id'), function ($q, $value) {
+                $q->whereAuthorId($value);
+            })
+            ->when(request('tag_id'), function ($q, $value) {
+                $q->whereHas('tags', function ($query) use ($value) {
+                    $query->where('id', $value);
+                });
+            })
+            ->orderBy('created_at', 'DESC')
+            ->paginate(30);
+        return $all;
+    }
+
+    /**
+     * Get one post with slug
+     *
+     * @param string $slug
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|WinkPost
+     */
+    public function show(string $slug)
+    {
+        return WinkPost::with(['author', 'tags'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+    }
+}
