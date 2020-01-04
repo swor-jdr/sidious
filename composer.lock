@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3152a44744ff1049c6fcfe27724504bb",
+    "content-hash": "fac3b105fb4016af3c3b450dc36aef92",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5470,6 +5470,59 @@
                 "laravel"
             ],
             "time": "2019-03-14T20:29:20+00:00"
+        },
+        {
+            "name": "vink/nova-cache-card",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dannyvink/nova-cache-card.git",
+                "reference": "dd2a5225b5e698958c7e2d7e0753c398c91116a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dannyvink/nova-cache-card/zipball/dd2a5225b5e698958c7e2d7e0753c398c91116a0",
+                "reference": "dd2a5225b5e698958c7e2d7e0753c398c91116a0",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vink\\NovaCacheCard\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vink\\NovaCacheCard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Danny Vink",
+                    "email": "danny@dannyvink.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Manage your application's cache from a handy Laravel Nova dashboard card.",
+            "homepage": "https://github.com/dannyvink/nova-cache-card",
+            "keywords": [
+                "cache",
+                "file",
+                "laravel",
+                "nova",
+                "redis"
+            ],
+            "time": "2019-02-16T21:11:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

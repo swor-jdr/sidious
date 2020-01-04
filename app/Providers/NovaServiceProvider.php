@@ -63,6 +63,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new Help,
             new SystemInformationCard(),
+            new \Vink\NovaCacheCard\CacheCard(),
         ];
     }
 
