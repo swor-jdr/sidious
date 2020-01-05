@@ -48,6 +48,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 "alexis59ber@gmail.com",
                 "gauvain.boiche@wanadoo.fr",
                 "camille.sautot@gmail.com",
+                "vador@sith.gal",
             ]);
         });
     }
@@ -62,6 +63,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new Help,
             new SystemInformationCard(),
+            new \Vink\NovaCacheCard\CacheCard(),
         ];
     }
 
