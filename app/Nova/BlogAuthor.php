@@ -11,6 +11,8 @@ use Wink\WinkAuthor;
 
 class BlogAuthor extends Resource
 {
+    public static $group = "Holonews";
+
     /**
      * The model the resource corresponds to.
      *
@@ -23,7 +25,7 @@ class BlogAuthor extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -31,12 +33,12 @@ class BlogAuthor extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name'
     ];
 
     public static function label()
     {
-        return "Holonews";
+        return "Auteurs";
     }
 
     /**
