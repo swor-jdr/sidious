@@ -1,10 +1,10 @@
 <?php
-
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Wink\WinkTag;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class BlogTag extends Resource
@@ -14,7 +14,7 @@ class BlogTag extends Resource
      *
      * @var string
      */
-    public static $model = 'App\BlogTag';
+    public static $model = WinkTag::class;
 
     public static function label()
     {
