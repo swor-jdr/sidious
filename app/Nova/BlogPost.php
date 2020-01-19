@@ -11,6 +11,8 @@ use Wink\WinkPost;
 
 class BlogPost extends Resource
 {
+    public static $group = "Holonews";
+
     /**
      * The model the resource corresponds to.
      *
@@ -76,7 +78,7 @@ class BlogPost extends Resource
 
     public static function label()
     {
-        return "Holonews";
+        return "Posts";
     }
 
     /**
