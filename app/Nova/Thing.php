@@ -77,7 +77,7 @@ class Thing extends Resource
 
             Files::make("Illustration", "image")
                 ->nullable()
-                ->onlyOnDetail(),
+                ->onlyOnForms(),
         ];
     }
 
