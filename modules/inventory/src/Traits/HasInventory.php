@@ -7,6 +7,6 @@ trait HasInventory
 {
     public function things()
     {
-        return $this->morphMany(Possession::class, "owner");
+        return $this->morphMany(Possession::class, "owner")->withPivot(['nb', 'name', 'slug']);
     }
 }
