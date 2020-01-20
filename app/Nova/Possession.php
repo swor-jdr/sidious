@@ -13,11 +13,28 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 class Possession extends Resource
 {
     /**
+     * Admin section title
+     *
+     * @var string
+     */
+    public static $group = "Inventaire";
+
+    /**
+     * Admin menu title
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return "Possessions";
+    }
+
+    /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Possession';
+    public static $model = \Modules\Inventory\Models\Possession::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
