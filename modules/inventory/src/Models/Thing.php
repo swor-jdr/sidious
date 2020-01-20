@@ -17,6 +17,8 @@ class Thing extends Model
 {
     use SoftDeletes, HasSlug, HasTags;
 
+    protected $table = "objects";
+
     /**
      * Get the options for generating the slug.
      */

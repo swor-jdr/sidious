@@ -31,6 +31,6 @@ class CreatePosessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posessions');
+        Schema::dropIfExists('possessions');
     }
 }

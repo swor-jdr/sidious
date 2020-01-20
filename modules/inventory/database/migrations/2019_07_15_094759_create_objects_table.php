@@ -16,6 +16,7 @@ class CreateObjectsTable extends Migration
         Schema::create('objects', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->string("name");
             $table->string("slug");
             $table->string("image")->nullable();
