@@ -10,7 +10,7 @@ use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Object extends Resource
+class Thing extends Resource
 {
     /**
      * Admin section title
@@ -34,7 +34,7 @@ class Object extends Resource
      *
      * @var string
      */
-    public static $model = \Modules\Inventory\Models\Object::class;
+    public static $model = \Modules\Inventory\Models\Thing::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

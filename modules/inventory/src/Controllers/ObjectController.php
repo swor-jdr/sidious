@@ -2,7 +2,7 @@
 namespace Modules\Inventory\Controllers;
 
 use App\Http\Controllers\Controller;
-use Modules\Inventory\Models\Object;
+use Modules\Inventory\Models\Thing;
 use Modules\Inventory\Models\ObjectType;
 
 class ObjectController extends Controller
@@ -23,9 +23,9 @@ class ObjectController extends Controller
      *
      * @param ObjectType $objectType
      * @param Object $object
-     * @return Object
+     * @return Thing
      */
-    public function show(ObjectType $objectType, \Modules\Inventory\Models\Object $object)
+    public function show(ObjectType $objectType, \Modules\Inventory\Models\Thing $object)
     {
         $object->type = $objectType;
         return $object;
@@ -54,11 +54,11 @@ class ObjectController extends Controller
      * Update an object
      *
      * @param ObjectType $objectType
-     * @param Object $object
-     * @return Object
+     * @param Thing $object
+     * @return Thing
      * @throws \Exception
      */
-    public function update(ObjectType $objectType, \Modules\Inventory\Models\Object $object)
+    public function update(ObjectType $objectType, \Modules\Inventory\Models\Thing $object)
     {
         $data = request()->only(["price", "maintain", "name", "image", "object_type_id"]);
 
@@ -78,7 +78,7 @@ class ObjectController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function destroy(ObjectType $objectType, \Modules\Inventory\Models\Object $object)
+    public function destroy(ObjectType $objectType, \Modules\Inventory\Models\Thing $object)
     {
         try {
             $object->delete();

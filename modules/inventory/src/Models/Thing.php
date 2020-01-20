@@ -13,7 +13,7 @@ use Spatie\Tags\HasTags;
  * Class Object
  * @package Modules\Inventory
  */
-class Object extends Model
+class Thing extends Model
 {
     use SoftDeletes, HasSlug, HasTags;
 

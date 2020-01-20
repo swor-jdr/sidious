@@ -26,7 +26,7 @@ class Possession extends Model
 
     public function object()
     {
-        return $this->hasOne(Object::class);
+        return $this->hasOne(Thing::class);
     }
 
     public function owner()
