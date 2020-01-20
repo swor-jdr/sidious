@@ -73,7 +73,7 @@ class Thing extends Resource
             Number::make("Maintenance", "maintain")
                 ->sortable(),
 
-            BelongsTo::make("Type d'Objet", "type"),
+            BelongsTo::make("Type d'Objet", "type", "App\Nova\ObjectType"),
 
             Files::make("Illustration", "image")
                 ->nullable()
