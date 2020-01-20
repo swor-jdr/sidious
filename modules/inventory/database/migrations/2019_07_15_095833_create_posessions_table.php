@@ -16,6 +16,7 @@ class CreatePosessionsTable extends Migration
         Schema::create('possessions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->softDeletes();
             $table->unsignedMediumInteger("object_id");
             $table->string("name");
             $table->string("slug");
