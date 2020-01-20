@@ -20,6 +20,7 @@ class CreatePosessionsTable extends Migration
             $table->string("name");
             $table->string("slug");
             $table->morphs("owner");
+            $table->unsignedBigInteger("nb")->default(1);
         });
     }
 
