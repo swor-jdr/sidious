@@ -161,6 +161,7 @@ return [
         Modules\Factions\GroupsEventServiceProvider::class,
         Modules\Holonews\BlogServiceProvider::class,
         Modules\Notifications\NotificationProvider::class,
+        Modules\Transition\TransitionServiceProvider::class,
 
         /*
          * Application Service Providers...
