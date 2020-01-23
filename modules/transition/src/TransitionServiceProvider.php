@@ -22,6 +22,7 @@ class TransitionServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(__DIR__."/../views", "module::transition");
+        $this->loadMigrationsFrom(__DIR__."/../database/migrations");
     }
 }
