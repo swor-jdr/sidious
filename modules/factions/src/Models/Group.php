@@ -4,14 +4,16 @@ namespace Modules\Factions\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
+use Modules\Inventory\Contracts\HasInventoryContract;
+use Modules\Inventory\Traits\HasInventory;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Group extends Model implements HasMedia
+class Group extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, HasSlug, HasEconomy, HasMediaTrait;
+    use SoftDeletes, HasSlug, HasEconomy, HasMediaTrait, HasInventory;
 
     protected $table = "groups";
     protected $guarded = [];

@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasCompanies;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Traits\InGroups;
+use Modules\Inventory\Contracts\HasInventoryContract;
+use Modules\Inventory\Traits\HasInventory;
 use Nicolasey\Personnages\Models\Personnage;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Planet extends Model implements HasMedia
+class Planet extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, HasSlug, HasCompanies, HasEconomy, HasMediaTrait, InGroups;
+    use SoftDeletes, HasSlug, HasCompanies, HasEconomy, HasMediaTrait, InGroups, HasInventory;
 
     protected $guarded = [];
 
