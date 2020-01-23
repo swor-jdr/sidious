@@ -18,6 +18,8 @@ class CreateTransitionFollowup extends Migration
             $table->timestamps();
             $table->unsignedBigInteger("personnage")->nullable();
             $table->unsignedBigInteger("forum")->nullable();
+            $table->unsignedBigInteger("max_personnage")->nullable();
+            $table->unsignedBigInteger("max_forum")->nullable();
         });
     }
 
