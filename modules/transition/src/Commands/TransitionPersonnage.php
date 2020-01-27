@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 
 class TransitionPersonnage extends Command
 {
@@ -72,7 +73,14 @@ class TransitionPersonnage extends Command
             $nb++;
             try {
                 $perso = DB::connection("v4")->table("phpbb_users")->find($nb);
-                $this->makeTransitionForPJ($perso);
+                $pj = $this->makeTransitionForPJ($perso);
+
+                // Create and save recover key
+                $pj->recover_key = Uuid::uuid4();
+                $pj->save();
+
+                // @todo send recover key to old account email
+
                 $this->info($perso->name." Recovered !");
             } catch (\Exception $exception) {
                 $this->config->personnage = $nb--;
@@ -99,5 +107,10 @@ class TransitionPersonnage extends Command
     private function makeTransitionForPJ($perso)
     {
 
+    }
+
+    private function createRecoverKey()
+    {
+        return Uuid::uuid4();
     }
 }
