@@ -55,6 +55,13 @@ class Personnage extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
+    public function resolveRouteBinding($value)
+    {
+        if(is_numeric($value)) return parent::resolveRouteBinding($value);
+        if(is_string($value)) return $this->where('slug', $value)->firstOrFail();
+        return parent::resolveRouteBinding($value);
+    }
+
     /**
      * Register media collections for the personnage
      *
