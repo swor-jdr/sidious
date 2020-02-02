@@ -59,11 +59,6 @@ class PersonnageController extends Controller
         return $personnage->load("owner");
     }
 
-    public function showBySlug(string $slug)
-    {
-        return Personnage::findBySlug($slug);
-    }
-
     /**
      * Create a personnage
      *
