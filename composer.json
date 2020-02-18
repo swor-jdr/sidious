@@ -56,7 +56,8 @@
             "Modules\\Personnages\\": "modules/personnages/src",
             "Modules\\Factions\\": "modules/factions/src",
             "Modules\\Holonews\\": "modules/holonews/src",
-            "Modules\\Inventory\\": "modules/inventory/src"
+            "Modules\\Inventory\\": "modules/inventory/src",
+            "Modules\\Notifications\\": "modules/notifications/src"
         }
     },
     "autoload-dev": {
@@ -68,7 +69,8 @@
             "Modules\\Personnages\\Tests\\": "modules/personnages/tests",
             "Modules\\Factions\\Tests\\": "modules/factions/tests",
             "Modules\\Holonews\\Tests\\": "modules/holonews/tests",
-            "Modules\\Inventory\\Tests\\": "modules/inventory/tests"
+            "Modules\\Inventory\\Tests\\": "modules/inventory/tests",
+            "Modules\\Notifications\\Tests\\": "modules/inventory/tests"
         }
     },
     "extra": {
