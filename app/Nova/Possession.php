@@ -69,6 +69,7 @@ class Possession extends Resource
                     Faction::class,
                     Company::class,
                     Planet::class,
+                    Secteur::class,
                 ]),
 
             BelongsTo::make("Objet", "object"),

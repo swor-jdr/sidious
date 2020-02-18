@@ -5,13 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Galaxy\Models\Planet;
+use Modules\Inventory\Contracts\HasInventoryContract;
+use Modules\Inventory\Traits\HasInventory;
 use Nicolasey\Personnages\Models\Personnage;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Company extends Model
+class Company extends Model implements HasInventoryContract
 {
-    use SoftDeletes, HasEconomy, HasSlug;
+    use SoftDeletes, HasEconomy, HasSlug, HasInventory;
 
     protected $guarded = [];
 

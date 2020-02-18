@@ -5,14 +5,16 @@ namespace Modules\Galaxy\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
+use Modules\Inventory\Contracts\HasInventoryContract;
+use Modules\Inventory\Traits\HasInventory;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Secteur extends Model implements HasMedia
+class Secteur extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, NodeTrait, HasSlug, HasMediaTrait;
+    use SoftDeletes, NodeTrait, HasSlug, HasMediaTrait, HasInventory;
 
     /**
      * Get the options for generating the slug.

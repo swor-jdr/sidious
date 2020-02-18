@@ -5,8 +5,8 @@ use Modules\Inventory\Models\Possession;
 
 trait HasInventory
 {
-    public function things()
+    public function possessions()
     {
-        return $this->morphMany(Possession::class, "owner")->withPivot(['nb', 'name', 'slug']);
+        return $this->morphMany(Possession::class, "owner");
     }
 }
