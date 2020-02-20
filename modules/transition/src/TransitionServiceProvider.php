@@ -1,10 +1,13 @@
 <?php
 namespace Modules\Transition;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class TransitionServiceProvider extends ServiceProvider
 {
+    protected $namespace = "Modules\Transition\Controllers";
+
     /**
      * Register services.
      *
@@ -24,5 +27,21 @@ class TransitionServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__."/../views", "module::transition");
         $this->loadMigrationsFrom(__DIR__."/../database/migrations");
+        $this->mapApiRoutes();
+    }
+
+    /**
+     * Add api routes in provider using standard 'api' middleware
+     *
+     * @return void
+     */
+    private function mapApiRoutes()
+    {
+        Route::namespace($this->namespace)
+            ->middleware("api")
+            ->prefix("api")
+            ->group(function () {
+                require __DIR__.'/../routes.php';
+            });
     }
 }
