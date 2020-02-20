@@ -4,6 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Modules\Personnages\Models\Personnage;
+use Modules\Transition\Mail\RecoverPersonnage;
 use Ramsey\Uuid\Uuid;
 
 class TransitionPersonnage extends Command
@@ -14,6 +17,7 @@ class TransitionPersonnage extends Command
      * @var array
      */
     protected $translation_table = array(
+        "id" => "v4_id",
         "username" => "name",
         "user_email" => "v4_email",
         "user_lastvisit" => "",
@@ -79,9 +83,11 @@ class TransitionPersonnage extends Command
                 $pj->recover_key = Uuid::uuid4();
                 $pj->save();
 
-                // @todo send recover key to old account email
+                Mail::to($pj->v4_email)->send(new RecoverPersonnage($pj));
 
                 $this->info($perso->name." Recovered !");
+
+                // maj du dernier personnage recovered
             } catch (\Exception $exception) {
                 $this->config->personnage = $nb--;
                 $this->config->save();
@@ -104,13 +110,8 @@ class TransitionPersonnage extends Command
         $this->info("Max Personnage Checked : ".$nb);
     }
 
-    private function makeTransitionForPJ($perso)
+    private function makeTransitionForPJ($perso): Personnage
     {
 
-    }
-
-    private function createRecoverKey()
-    {
-        return Uuid::uuid4();
     }
 }
