@@ -15,6 +15,8 @@ class AddRecoveryKeyPersonnage extends Migration
     {
         Schema::table("personnages", function (Blueprint $table) {
             $table->string("recover_key")->nullable();
+            $table->unsignedMediumInteger("v4_id")->unique()->nullable();
+            $table->string("v4_email")->nullable()->unique();
         });
     }
 
@@ -27,6 +29,8 @@ class AddRecoveryKeyPersonnage extends Migration
     {
         Schema::table("personnages", function (Blueprint $table) {
             $table->dropColumn("recover_key");
+            $table->dropColumn("v4_id");
+            $table->dropColumn("v4_email");
         });
     }
 }
