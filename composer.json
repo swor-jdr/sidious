@@ -32,7 +32,8 @@
         "titasgailius/search-relations": "^1.0",
         "tymon/jwt-auth": "1.0.0-rc.4.1",
         "vink/nova-cache-card": "^1.0",
-        "writingink/wink": "^0.1.0"
+        "writingink/wink": "^0.1.0",
+        "yadahan/nova-bouncer": "^0.3.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",

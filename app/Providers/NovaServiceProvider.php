@@ -77,6 +77,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new \Inani\LaravelNovaConfiguration\LaravelNovaConfiguration(),
             new \Christophrumpel\NovaNotifications\NovaNotifications(),
+            new \Yadahan\BouncerTool\BouncerTool(),
             new \Beyondcode\TinkerTool\Tinker(),
         ];
     }
