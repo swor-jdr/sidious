@@ -9,6 +9,7 @@
         "barryvdh/laravel-cors": "^0.11.2",
         "beyondcode/nova-tinker-tool": "^1.0",
         "christophrumpel/nova-notifications": "^1.0",
+        "cybercog/laravel-love": "^8.3",
         "ebess/advanced-nova-media-library": "^2.7",
         "emilianotisato/nova-tinymce": "^0.5.4",
         "fideloper/proxy": "^4.0",
