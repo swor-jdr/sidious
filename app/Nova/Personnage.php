@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
@@ -104,6 +105,17 @@ class Personnage extends Resource
             Boolean::make("Compte Staff", "isStaff")
                 ->trueValue(true)
                 ->falseValue(false),
+
+            MorphToMany::make('Roles', 'roles', 'Yadahan\BouncerTool\Nova\Role')->fields(function () {
+                return [
+                    Text::make('Scope')
+                        ->sortable()
+                        ->rules('nullable', 'integer'),
+                ];
+            }),
+
+            MorphToMany::make('Abilities', 'abilities', 'Yadahan\BouncerTool\Nova\Ability')
+                ->fields(new \Yadahan\BouncerTool\Nova\PermissionsFields),
         ];
     }
 
