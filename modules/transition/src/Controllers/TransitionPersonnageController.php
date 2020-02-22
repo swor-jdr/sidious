@@ -1,5 +1,5 @@
 <?php
-namespace Modules\Transition\Controller;
+namespace Modules\Transition\Controllers;
 
 use App\Http\Controllers\Controller;
 use Modules\Personnages\Models\Personnage;
@@ -10,7 +10,7 @@ class TransitionPersonnageController extends Controller
      * Procédure pour qu'un joueur claim un personnage existant depuis la v4
      *
      * @param Personnage $personnage
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function claimPersonnage(Personnage $personnage)
     {
