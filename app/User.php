@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\IsJWTSubject;
+use App\Traits\IsReacter;
 use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +14,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject, \Cog\Contracts\Love\Reacterable\Models\Reacterable
 {
-    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities, HasPersonnages, Reacterable;
+    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities, HasPersonnages, Reacterable, IsReacter;
 
     protected $with = ['personnages'];
 
