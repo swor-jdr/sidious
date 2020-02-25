@@ -7,6 +7,7 @@ use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Models\Assignation;
 use Modules\Factions\Models\Group;
 use Modules\Factions\Traits\InGroups;
+use Modules\Forum\Traits\PostsInForum;
 use Modules\Inventory\Contracts\HasInventoryContract;
 use Modules\Inventory\Traits\HasInventory;
 use Modules\Personnages\Events\PersonnageCreated;
@@ -21,7 +22,7 @@ use Spatie\Tags\HasTags;
 
 class Personnage extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups, HasInventory;
+    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups, PostsInForum, HasInventory;
 
     /**
      * The attributes that are mass assignable.
