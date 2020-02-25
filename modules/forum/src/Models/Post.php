@@ -20,4 +20,13 @@ class Post extends Model
     {
         return $this->belongsTo(Topic::class);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            $model->topic()->author()->follow($model);
+        });
+    }
 }
