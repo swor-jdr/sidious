@@ -38,8 +38,8 @@ class UpdateAbilities extends Command
      */
     public function handle()
     {
-        $entities = config("bouncer-tool.entities");
-        $abilities = config("bouncer-tool.actions");
+        $entities = config("acl.entities");
+        $abilities = config("acl.actions");
 
         foreach ($entities as $keyEntity => $valueEntity) {
             foreach ($abilities as $key => $value) {
