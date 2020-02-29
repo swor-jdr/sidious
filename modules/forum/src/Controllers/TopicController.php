@@ -30,7 +30,7 @@ class TopicController extends Controller
     {
         $data = request()->only("name");
         $data['forum_id'] = $forum->id;
-        $data['author'] = auth()->user()->getAuthIdentifier();
+        $data['author_id'] = auth()->user()->getAuthIdentifier();
 
         try {
             $topic = Topic::create($data);
@@ -49,7 +49,7 @@ class TopicController extends Controller
      */
     public function show(Forum $forum, Topic $topic)
     {
-        $topic->load("forum", "posts");
+        $topic->load("forum", "posts", "followers");
         return $topic;
     }
 
