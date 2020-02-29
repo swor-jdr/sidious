@@ -92,4 +92,20 @@ class TopicController extends Controller
             throw $exception;
         }
     }
+
+    /**
+     * (Un)Follow a topic
+     *
+     * @param Forum $forum
+     * @param Topic $topic
+     * @throws \Exception
+     */
+    public function follow(Forum $forum, Topic $topic)
+    {
+        try {
+            auth()->user()->toggleFollow($topic);
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
 }

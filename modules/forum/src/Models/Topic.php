@@ -1,16 +1,16 @@
 <?php
-
 namespace Modules\Forum\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Personnages\Models\Personnage;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Topic extends Model
 {
-    use SoftDeletes, HasSlug;
+    use SoftDeletes, HasSlug, CanBeFollowed;
 
     protected $guarded = [];
 
@@ -50,6 +50,10 @@ class Topic extends Model
 
         static::deleted(function ($model) {
             $model->posts()->delete();
+        });
+
+        static::created(function ($model) {
+            $model->author()->follow($model);
         });
     }
 }
