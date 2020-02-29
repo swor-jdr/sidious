@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class NotificationProvider extends ServiceProvider
 {
-    private $namespace = "Modules\Inventory\Controllers";
+    private $namespace = "Modules\Notifications\Controllers";
 
     /**
      * Bootstrap services.
