@@ -43,7 +43,7 @@ return [
     /*
      * Date format for created_at.
      */
-    'date_format' => 'd-m-Y H:i:s',
+    'date_format' => 'Y-m-d H:i:s',
 
     /*
      * Namespace of models.
