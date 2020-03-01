@@ -1,14 +1,24 @@
 <?php
 namespace Modules\Holonews\Models;
 
-use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
-class Article extends Model implements ReactableContract
+class Article extends Model
 {
-    use SoftDeletes, Reactable;
+    use SoftDeletes, HasSlug;
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
 
     /**
      * The attributes that aren't mass assignable.
@@ -43,7 +53,7 @@ class Article extends Model implements ReactableContract
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'articles_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'articles_tags', 'article_id', 'tag_id');
     }
 
     /**

@@ -24,7 +24,7 @@
                 publishingModalShown: false,
                 seoModalShown: false,
 
-                id: this.$route.params.id || 'new',
+                id: this.$route.params.id || null,
 
                 errors: [],
 
@@ -134,11 +134,11 @@
              * Fill the form.
              */
             fillForm(data) {
-                this.form.id = data.id;
+                this.form.id = data.id || null;
                 this.form.publish_date = data.publish_date;
                 this.form.slug = 'draft-' + this.form.id;
 
-                if (this.id != 'new') {
+                if (!(this.id)) {
                     this.form.title = data.title;
                     this.form.slug = data.slug;
                     this.form.excerpt = data.excerpt;
@@ -322,7 +322,7 @@
                 if (this.status) return;
 
                 this.errors = [];
-                this.status = 'Saving...';
+                this.status = 'Enregistrement...';
 
                 if (this.form.title != 'Draft' && (!this.form.slug || this.form.slug.startsWith('draft-'))) {
                     this.form.slug = this.slugify(this.form.title);
@@ -331,7 +331,7 @@
                 this.http().post('/api/posts/' + this.id, this.form).then(response => {
                     this.status = '';
 
-                    if (this.id == 'new') {
+                    if (!this.id) {
                         this.$router.push({name: 'post-edit', params: {id: this.form.id}})
                     }
                 }).catch(error => {
@@ -378,7 +378,7 @@
                         <a href="#" @click.prevent="seoModal" class="no-underline text-text-color hover:text-primary w-full block py-2 px-4">
                             SEO & Social
                         </a>
-                        <a href="#" @click.prevent="deletePost" class="no-underline text-red w-full block py-2 px-4" v-if="id != 'new'">Delete</a>
+                        <a href="#" @click.prevent="deletePost" class="no-underline text-red w-full block py-2 px-4" v-if="!id">Delete</a>
                     </div>
                 </dropdown>
             </div>
