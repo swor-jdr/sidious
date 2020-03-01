@@ -23,9 +23,14 @@ class BlogServiceProvider extends ServiceProvider
         $this->registerAuthGuard();
         $this->registerPublishing();
 
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadViewsFrom(
             __DIR__.'/../resources/views', 'holonews'
         );
+
+        $this->commands([
+            Console\CreateAuthor::class,
+        ]);
     }
 
     /**

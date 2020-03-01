@@ -8,6 +8,8 @@ class Tag extends Model
 {
     use SoftDeletes;
 
+    protected $table = "news_tags";
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -31,7 +33,7 @@ class Tag extends Model
      */
     public function posts()
     {
-        return $this->belongsToMany(Article::class, 'wink_posts_tags', 'tag_id', 'post_id');
+        return $this->belongsToMany(Article::class, 'articles_tags', 'tag_id', 'post_id');
     }
 
     /**

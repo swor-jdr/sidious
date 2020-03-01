@@ -13,7 +13,7 @@ class CreateTables extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('news_tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug')->unique();
             $table->string('name');
@@ -22,14 +22,14 @@ class CreateTables extends Migration
             $table->index('created_at');
         });
 
-        Schema::create('posts_tags', function (Blueprint $table) {
-            $table->unsignedBigInteger('post_id');
+        Schema::create('articles_tags', function (Blueprint $table) {
             $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('article_id');
 
-            $table->unique(['post_id', 'tag_id']);
+            $table->unique(['article_id', 'tag_id']);
         });
 
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('slug')->unique();
             $table->string('title');
@@ -63,7 +63,7 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::table('tags', function (Blueprint $table) {
+        Schema::table('news_tags', function (Blueprint $table) {
             $table->text('meta')->nullable();
         });
 
@@ -75,7 +75,7 @@ class CreateTables extends Migration
             $table->text('meta')->nullable();
         });
 
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             $table->text('meta')->nullable();
         });
     }

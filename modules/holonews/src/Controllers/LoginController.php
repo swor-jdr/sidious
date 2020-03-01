@@ -1,6 +1,6 @@
 <?php
 
-namespace Wink\Http\Controllers;
+namespace Modules\Holonews\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Wink.</title>
+    <title>Holonews.</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Merriweather|Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
@@ -17,7 +17,7 @@
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
 
     <!-- Style sheets-->
-    @if(@auth('wink')->user()->meta['theme'] == 'dark')
+    @if(@auth('holonews')->user()->meta['theme'] == 'dark')
         <link href='{{mix('dark.css', 'vendor/holonews')}}' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/sunburst.min.css">
     @else

@@ -43,7 +43,7 @@ class Article extends Model implements ReactableContract
      */
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'wink_posts_tags', 'post_id', 'tag_id');
+        return $this->belongsToMany(Tag::class, 'articles_tags', 'post_id', 'tag_id');
     }
 
     /**
