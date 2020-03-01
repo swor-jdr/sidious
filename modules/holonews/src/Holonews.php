@@ -12,8 +12,8 @@ class Holonews
     {
         return [
             'unsplash_key' => config('services.unsplash.key'),
-            'path' => config('wink.path'),
-            'author' => auth('wink')->check() ? auth('wink')->user()->only('name', 'avatar', 'id') : null,
+            'path' => config('holonews.path'),
+            'author' => auth('holonews')->check() ? auth('holonews')->user()->only('name', 'avatar', 'id') : null,
         ];
     }
 }

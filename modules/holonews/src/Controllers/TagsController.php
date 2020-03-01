@@ -64,7 +64,7 @@ class TagsController
 
         validator($data, [
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_tags', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('holonews.database_connection').'.tags', 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? Tag::findOrFail($id) : new Tag(['id' => request('id')]);

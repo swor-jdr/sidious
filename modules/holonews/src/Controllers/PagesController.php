@@ -62,7 +62,7 @@ class PagesController
 
         validator($data, [
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_pages', 'slug')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('holonews.database_connection').'.pages', 'slug')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? Page::findOrFail($id) : new Page(['id' => request('id')]);

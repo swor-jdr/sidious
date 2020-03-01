@@ -36,11 +36,11 @@ class Authenticate
      */
     public function handle(Request $request, \Closure $next)
     {
-        if ($this->auth->guard('wink')->check()) {
-            $this->auth->shouldUse('wink');
+        if ($this->auth->guard('holonews')->check()) {
+            $this->auth->shouldUse('holonews');
         } else {
             throw new AuthenticationException(
-                'Unauthenticated.', ['wink'], route('wink.auth.login')
+                'Unauthenticated.', ['wink'], route('holonews.auth.login')
             );
         }
 

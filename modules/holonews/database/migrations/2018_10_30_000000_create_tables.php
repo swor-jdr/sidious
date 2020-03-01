@@ -15,6 +15,7 @@ class CreateTables extends Migration
     {
         Schema::create('news_tags', function (Blueprint $table) {
             $table->increments('id');
+            $table->softDeletes();
             $table->string('slug')->unique();
             $table->string('name');
             $table->timestamps();
@@ -30,7 +31,8 @@ class CreateTables extends Migration
         });
 
         Schema::create('articles', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->increments('id');
+            $table->softDeletes();
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('excerpt');
@@ -45,6 +47,7 @@ class CreateTables extends Migration
 
         Schema::create('authors', function (Blueprint $table) {
             $table->increments('id');
+            $table->softDeletes();
             $table->string('slug')->unique();
             $table->string('name');
             $table->string('email')->unique();
@@ -57,6 +60,7 @@ class CreateTables extends Migration
 
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->softDeletes();
             $table->string('slug')->unique();
             $table->string('title');
             $table->text('body');

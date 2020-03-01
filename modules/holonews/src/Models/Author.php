@@ -1,12 +1,13 @@
 <?php
 namespace Modules\Holonews\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Author extends Model
+class Author extends Model implements Authenticatable
 {
     use SoftDeletes, HasSlug;
 

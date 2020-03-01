@@ -69,8 +69,8 @@ class TeamController
         validator($data, [
             'meta.theme' => 'in:dark,light',
             'name' => 'required',
-            'slug' => 'required|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'slug')->ignore(request('id')),
-            'email' => 'required|email|'.Rule::unique(config('wink.database_connection').'.wink_authors', 'email')->ignore(request('id')),
+            'slug' => 'required|'.Rule::unique(config('holonews.database_connection').'.authors', 'slug')->ignore(request('id')),
+            'email' => 'required|email|'.Rule::unique(config('holonews.database_connection').'.authors', 'email')->ignore(request('id')),
         ])->validate();
 
         $entry = $id !== 'new' ? Author::findOrFail($id) : new Author(['id' => request('id')]);

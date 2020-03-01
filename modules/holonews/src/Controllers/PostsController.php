@@ -1,6 +1,7 @@
 <?php
 namespace Modules\Holonews\Controllers;
 
+use Modules\Holonews\Models\Article;
 use Wink\WinkPost;
 
 class PostsController
@@ -12,7 +13,7 @@ class PostsController
      */
     public function all()
     {
-        $all = WinkPost::with(['author', 'tags'])
+        $all = Article::with(['author', 'tags'])
             ->when(request()->has('search'), function ($q) {
                 $q->where('title', 'LIKE', '%'.request('search').'%');
             })
@@ -37,7 +38,7 @@ class PostsController
      */
     public function show(string $slug)
     {
-        return WinkPost::with(['author', 'tags'])
+        return Article::with(['author', 'tags'])
             ->where('slug', $slug)
             ->firstOrFail();
     }

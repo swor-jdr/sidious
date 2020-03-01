@@ -72,14 +72,14 @@ class BlogServiceProvider extends ServiceProvider
      */
     private function registerAuthGuard()
     {
-        $this->app['config']->set('auth.providers.holonews_authors', [
+        $this->app['config']->set('auth.providers.holonews', [
             'driver' => 'eloquent',
             'model' => Author::class,
         ]);
 
         $this->app['config']->set('auth.guards.holonews', [
             'driver' => 'session',
-            'provider' => 'authors',
+            'provider' => 'holonews',
         ]);
     }
 
