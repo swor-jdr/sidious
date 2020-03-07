@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Password;
@@ -66,6 +67,9 @@ class BlogAuthor extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            NovaTinyMCE::make('Biographie', 'bio')
+                ->onlyOnForms(),
         ];
     }
 
