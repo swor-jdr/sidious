@@ -26,7 +26,7 @@ class Post extends Model
         parent::boot();
 
         static::created(function ($model) {
-            $model->topic()->author()->follow($model);
+            $model->topic->author->owner->follow($model);
         });
     }
 }
