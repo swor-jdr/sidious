@@ -53,7 +53,7 @@ class Topic extends Model
         });
 
         static::created(function ($model) {
-            $model->author()->follow($model);
+            $model->author->owner->follow($model);
         });
     }
 }
