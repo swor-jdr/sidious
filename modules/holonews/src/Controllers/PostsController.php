@@ -17,7 +17,7 @@ class PostsController
     public function index()
     {
         $entries = Article::when(request()->has('search'), function ($q) {
-            $q->where('title', 'LIKE', '%'.request('search').'%');
+            $q->where('title', 'LIKE', '%' . request('search') . '%');
         })->when(request('status'), function ($q, $value) {
             $q->$value();
         })->when(request('author_id'), function ($q, $value) {
@@ -42,7 +42,7 @@ class PostsController
      */
     public function show($id = null)
     {
-        if ($id === 'new' || is_null($id)) {
+        if ($id == '-1' || is_null($id)) {
             return response()->json([
                 'entry' => Article::make(['publish_date' => now()->format('Y-m-d H:i:00')]),
             ]);
@@ -80,10 +80,10 @@ class PostsController
             'publish_date' => 'required|date',
             'author_id' => 'required',
             'title' => 'required',
-            'slug' => 'required|'.Rule::unique(config('holonews.database_connection').'.articles', 'slug')->ignore(request('id')),
+            'slug' => 'required|' . Rule::unique(config('holonews.database_connection') . '.articles', 'slug')->ignore(request('id')),
         ])->validate();
 
-        $entry = (request('id')) ? Article::firstOrFail(request('id')) : new Article();
+        $entry = $id != '-1' ? Article::findOrFail($id) : new Article();
         $entry->fill($data);
         $entry->save();
 
@@ -109,7 +109,7 @@ class PostsController
         return collect($incomingTags)->map(function ($incomingTag) use ($allTags) {
             $tag = $allTags->where('id', $incomingTag['id'])->first();
 
-            if (! $tag) {
+            if (!$tag) {
                 $tag = Tag::create([
                     'name' => $incomingTag['name'],
                     'slug' => Str::slug($incomingTag['name']),
@@ -142,7 +142,7 @@ class PostsController
     {
         $all = Article::with(['author', 'tags'])
             ->when(request()->has('search'), function ($q) {
-                $q->where('title', 'LIKE', '%'.request('search').'%');
+                $q->where('title', 'LIKE', '%' . request('search') . '%');
             })
             ->when(request('author_id'), function ($q, $value) {
                 $q->whereAuthorId($value);
