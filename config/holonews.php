@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'database_connection' => env('WINK_DB_CONNECTION', 'wink'),
+    'database_connection' => env('HOLONEWS_DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,9 +26,9 @@ return [
     |
     */
 
-    'storage_disk' => env('WINK_STORAGE_DISK', 'local'),
+    'storage_disk' => env('HOLONEWS_STORAGE_DISK', 'local'),
 
-    'storage_path' => env('WINK_STORAGE_PATH', 'public/wink/images'),
+    'storage_path' => env('HOLONEWS_STORAGE_PATH', 'public/holonews/images'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
     |
     */
 
-    'path' => env('WINK_PATH', 'wink'),
+    'path' => env('HOLONEWS_PATH', 'holonews'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,5 +54,5 @@ return [
     | - ShareErrorsFromSession
     |
     */
-    'middleware_group' => env('WINK_MIDDLEWARE_GROUP', 'web'),
+    'middleware_group' => env('HOLONEWS_MIDDLEWARE_GROUP', 'web'),
 ];

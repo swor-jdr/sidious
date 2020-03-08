@@ -7,7 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Wink\WinkPost;
+use Modules\Holonews\Models\Article;
 
 class BlogPost extends Resource
 {
@@ -18,7 +18,7 @@ class BlogPost extends Resource
      *
      * @var string
      */
-    public static $model = WinkPost::class;
+    public static $model = Article::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
