@@ -13,31 +13,30 @@ const tailwindcss = require('tailwindcss');
  |
  */
 
-mix
-    .options({
-        uglify: {
-            uglifyOptions: {
-                compress: {
-                    drop_console: true,
-                }
-            }
+mix.options({
+    uglify: {
+        uglifyOptions: {
+            compress: {
+                drop_console: true,
+            },
         },
-        processCssUrls: false,
-    })
-    .webpackConfig({
-        plugins: [
-            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
-        ],
-    });
+    },
+    processCssUrls: false,
+}).webpackConfig({
+    plugins: [new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)],
+});
 
-mix
-    .setPublicPath('public')
-    .js('resources/js/app.js', 'public')
-    .sass('resources/sass/light.scss', 'public', {}, [tailwindcss('./light.js')])
+const pathConfig = {
+    public: mix.inProduction() ? 'public' : '../../public/vendor/holonews',
+    destination: mix.inProduction() ? 'public' : './',
+};
+
+mix.setPublicPath(pathConfig.public)
+    .js('resources/js/app.js', pathConfig.destination)
+    .sass('resources/sass/light.scss', pathConfig.destination, {}, [tailwindcss('./light.js')])
     .version();
 
-mix
-    .sass('resources/sass/dark.scss', 'public', {}, [tailwindcss('./dark.js')])
+mix.sass('resources/sass/dark.scss', pathConfig.destination, {}, [tailwindcss('./dark.js')])
     .version()
-    .copy('resources/favicon.png', 'public')
+    .copy('resources/favicon.png', pathConfig.destination)
     .copy('public', '../winktest/public/vendor/wink');
