@@ -7,6 +7,9 @@ use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Models\Assignation;
 use Modules\Factions\Models\Group;
 use Modules\Factions\Traits\InGroups;
+use Modules\Forum\Traits\PostsInForum;
+use Modules\Inventory\Contracts\HasInventoryContract;
+use Modules\Inventory\Traits\HasInventory;
 use Modules\Personnages\Events\PersonnageCreated;
 use Modules\Personnages\Events\PersonnageDeleted;
 use Modules\Personnages\Events\PersonnageUpdated;
@@ -15,10 +18,11 @@ use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 
-class Personnage extends Model implements HasMedia
+class Personnage extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups;
+    use SoftDeletes, HasSlug, HasMediaTrait, HasRolesAndAbilities, HasEconomy, InGroups, PostsInForum, HasInventory;
 
     /**
      * The attributes that are mass assignable.
@@ -52,6 +56,13 @@ class Personnage extends Model implements HasMedia
         return SlugOptions::create()
             ->generateSlugsFrom('name')
             ->saveSlugsTo('slug');
+    }
+
+    public function resolveRouteBinding($value)
+    {
+        if(is_numeric($value)) return parent::resolveRouteBinding($value);
+        if(is_string($value)) return $this->where('slug', $value)->firstOrFail();
+        return parent::resolveRouteBinding($value);
     }
 
     /**

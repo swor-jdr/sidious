@@ -15,5 +15,11 @@ use Faker\Generator as Faker;
 $factory->define(\Modules\Personnages\Models\Personnage::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
+        'bio' => $faker->paragraph,
+        'signature' => $faker->sentence,
+        'aversions' => $faker->paragraph,
+        'affections' => $faker->paragraph,
+        'title' => $faker->jobTitle,
+        'job' => $faker->opera,
     ];
 });

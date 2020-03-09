@@ -12,7 +12,7 @@ class CreatePersonnages extends \Illuminate\Database\Migrations\Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unsignedMediumInteger("owner_id");
+            $table->unsignedMediumInteger("owner_id")->nullable();
 
             $table->boolean("active")->default(true);
             $table->boolean("isStaff")->default(false);
@@ -29,7 +29,7 @@ class CreatePersonnages extends \Illuminate\Database\Migrations\Migration
             $table->boolean("current")->default(false);
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists("personnages");

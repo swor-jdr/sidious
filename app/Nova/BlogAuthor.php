@@ -2,12 +2,13 @@
 
 namespace App\Nova;
 
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Wink\WinkAuthor;
+use Modules\Holonews\Models\Author;
 
 class BlogAuthor extends Resource
 {
@@ -18,7 +19,7 @@ class BlogAuthor extends Resource
      *
      * @var string
      */
-    public static $model = WinkAuthor::class;
+    public static $model = Author::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -66,6 +67,9 @@ class BlogAuthor extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8'),
+
+            NovaTinyMCE::make('Biographie', 'bio')
+                ->onlyOnForms(),
         ];
     }
 

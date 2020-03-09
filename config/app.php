@@ -146,6 +146,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -153,11 +154,13 @@ return [
         Modules\Forum\ForumServiceProvider::class,
         Modules\Galaxy\GalaxyProvider::class,
         Modules\Economy\EconomyProvider::class,
+        Modules\Inventory\Providers\InventoryProvider::class,
         Modules\Personnages\PersonnageServiceProvider::class,
         Modules\Personnages\PersonnageEventServiceProvider::class,
         Modules\Factions\GroupsServiceProvider::class,
         Modules\Factions\GroupsEventServiceProvider::class,
         Modules\Holonews\BlogServiceProvider::class,
+        Modules\Notifications\NotificationProvider::class,
 
         /*
          * Application Service Providers...
