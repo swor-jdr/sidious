@@ -23,12 +23,19 @@ class AuthController extends Controller
      */
     public function login()
     {
+        $rules = [
+            "email" => "email|required",
+            "password" => "string|min:6|required"
+        ];
+        request()->validate($rules);
+
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+        $token = auth()->user()->createToken(env("APP_NAME"))->accessToken;
         return $this->respondWithToken($token);
     }
 

@@ -32,7 +32,7 @@ class UsersController extends Controller
     {
         $user = User::create(request()->input());
         $user->load(['personnages']);
-        $token = JWTAuth::fromUser($user);
+        $token = $user->createToken(env("APP_NAME"))->accessToken;
         $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL())->timestamp;
 
         return response()->json([
@@ -50,7 +50,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json($user);
+        return response()->json($user->load(['personnages']));
     }
 
     /**
