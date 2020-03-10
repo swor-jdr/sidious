@@ -11,9 +11,9 @@ use Overtrue\LaravelFollow\Traits\CanFollow;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities, HasPersonnages, CanFollow;
+    use Notifiable, SoftDeletes, HasRolesAndAbilities, HasPersonnages, CanFollow;
 
     protected $with = ['personnages'];
 
