@@ -2,22 +2,22 @@
 
 namespace Laravel\Nova\Tests\Controller;
 
-use Laravel\Nova\Nova;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Nova;
+use Laravel\Nova\Tests\Fixtures\ColumnFilter;
+use Laravel\Nova\Tests\Fixtures\Comment;
+use Laravel\Nova\Tests\Fixtures\CustomKeyFilter;
+use Laravel\Nova\Tests\Fixtures\IdFilter;
 use Laravel\Nova\Tests\Fixtures\Post;
 use Laravel\Nova\Tests\Fixtures\Role;
 use Laravel\Nova\Tests\Fixtures\User;
-use Laravel\Nova\Tests\IntegrationTest;
-use Laravel\Nova\Tests\Fixtures\Comment;
-use Laravel\Nova\Tests\Fixtures\IdFilter;
 use Laravel\Nova\Tests\Fixtures\UserPolicy;
-use Laravel\Nova\Tests\Fixtures\ColumnFilter;
-use Laravel\Nova\Tests\Fixtures\CustomKeyFilter;
+use Laravel\Nova\Tests\IntegrationTest;
 
 class ResourceIndexTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -382,26 +382,29 @@ class ResourceIndexTest extends IntegrationTest
         factory(Comment::class)->create()->commentable()->associate($post1);
 
         DB::enableQueryLog();
-        $count = count(DB::getQueryLog());
+        DB::flushQueryLog();
 
+        // Eager-loading of the comment's author relation is not enabled.
         $response = $this->withExceptionHandling()
             ->getJson('/nova-api/comments');
 
         $response->assertStatus(200);
-        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 3 /* comentable */ + 3 /* authors */);
 
-        $count = count(DB::getQueryLog());
+        $this->assertEquals(10, count(DB::getQueryLog()));
 
+        // Enable eager-loading of the comment's author relation.
+        DB::flushQueryLog();
         $_SERVER['nova.comments.useEager'] = true;
 
         $response = $this->withExceptionHandling()
             ->getJson('/nova-api/comments');
 
-        DB::disableQueryLog();
+        $response->assertStatus(200);
+
+        $this->assertEquals(3, count(DB::getQueryLog()));
 
         unset($_SERVER['nova.comments.useEager']);
 
-        $response->assertStatus(200);
-        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 1 /* comentable */ + 1 /* authors */);
+        DB::disableQueryLog();
     }
 }

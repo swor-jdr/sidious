@@ -2,10 +2,10 @@
 
 namespace Laravel\Nova\Tests\Fixtures;
 
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -46,6 +46,14 @@ class User extends Authenticatable
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+    /**
+     * Get the first of the profiles that belong to the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 
     /**

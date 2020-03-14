@@ -3,13 +3,13 @@
 namespace Laravel\Nova\Tests\Controller;
 
 use Laravel\Nova\Lenses\Lens;
+use Laravel\Nova\Tests\Fixtures\IdFilter;
 use Laravel\Nova\Tests\Fixtures\User;
 use Laravel\Nova\Tests\IntegrationTest;
-use Laravel\Nova\Tests\Fixtures\IdFilter;
 
 class LensControllerTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

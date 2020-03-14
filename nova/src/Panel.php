@@ -2,8 +2,8 @@
 
 namespace Laravel\Nova;
 
-use JsonSerializable;
 use Illuminate\Http\Resources\MergeValue;
+use JsonSerializable;
 
 class Panel extends MergeValue implements JsonSerializable
 {
@@ -25,6 +25,8 @@ class Panel extends MergeValue implements JsonSerializable
 
     /**
      * The panel's component.
+     *
+     * @var string
      */
     public $component = 'panel';
 
@@ -34,6 +36,13 @@ class Panel extends MergeValue implements JsonSerializable
      * @var bool
      */
     public $showToolbar = false;
+
+    /**
+     * The initial field display limit.
+     *
+     * @var int|null
+     */
+    public $limit = null;
 
     /**
      * Create a new panel instance.
@@ -77,6 +86,9 @@ class Panel extends MergeValue implements JsonSerializable
 
     /**
      * Get the default panel name for a create panel.
+     *
+     * @param  \Laravel\Nova\Resource  $resource
+     * @return string
      */
     public static function defaultNameForCreate(Resource $resource)
     {
@@ -87,6 +99,9 @@ class Panel extends MergeValue implements JsonSerializable
 
     /**
      * Get the default panel name for the update panel.
+     *
+     * @param  \Laravel\Nova\Resource  $resource
+     * @return string
      */
     public static function defaultNameForUpdate(Resource $resource)
     {
@@ -108,9 +123,22 @@ class Panel extends MergeValue implements JsonSerializable
     }
 
     /**
+     * Set the number of initially visible fields.
+     *
+     * @param int $limit
+     * @return $this
+     */
+    public function limit($limit)
+    {
+        $this->limit = $limit;
+
+        return $this;
+    }
+
+    /**
      * Set the Vue component key for the panel.
      *
-     * @param string $component
+     * @param  string  $component
      * @return $this
      */
     public function withComponent($component)
@@ -141,6 +169,7 @@ class Panel extends MergeValue implements JsonSerializable
             'component' => $this->component(),
             'name' => $this->name,
             'showToolbar' => $this->showToolbar,
+            'limit' => $this->limit,
         ], $this->meta());
     }
 }
