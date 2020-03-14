@@ -25,6 +25,7 @@
         "mtolhuys/laravel-schematics": "^0.9.10",
         "nova-cards/system-information-card": "^1.0",
         "overtrue/laravel-follow": "^1.1",
+        "qoraiche/laravel-mail-editor": "^2.0",
         "silber/bouncer": "v1.0.0-rc.7",
         "spatie/laravel-medialibrary": "^7.19",
         "spatie/laravel-sluggable": "^2.4",
