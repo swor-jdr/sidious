@@ -1,29 +1,17 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Modules\Transition\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Modules\Personnages\Models\Personnage;
 use Modules\Transition\Mail\RecoverPersonnage;
+use Modules\Transition\Models\FollowUp;
+use Modules\Transition\Models\TransitionUser;
 use Ramsey\Uuid\Uuid;
 
 class TransitionPersonnage extends Command
 {
-    /**
-     * Transition table from v4 field to v5 model field
-     *
-     * @var array
-     */
-    protected $translation_table = array(
-        "id" => "v4_id",
-        "username" => "name",
-        "user_email" => "v4_email",
-        "user_lastvisit" => "",
-        "user_birthday" => "",
-    );
-
     /**
      * The name and signature of the console command.
      *
@@ -54,10 +42,12 @@ class TransitionPersonnage extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws \Exception
      */
     public function handle()
     {
-        $this->config = DB::table("followup")->first();
+        $this->config = FollowUp::find(1);
+        $this->config = ($this->config) ?: new FollowUp();
 
         /**
          * Get last recovered personnage from v4 save
@@ -71,28 +61,26 @@ class TransitionPersonnage extends Command
 
         $limit = $this->ask("Nombre à récupérer cette fois ?");
 
-        $nb = $this->config->personnage;
-        $limit = $this->config->personnage + $limit;
+        $nb = ($this->config) ? $this->config->personnage : 0;
+        $limit = $nb + $limit;
+
         while($nb <= $limit) {
             $nb++;
             try {
-                $perso = DB::connection("v4")->table("phpbb_users")->find($nb);
+                $perso = TransitionUser::find($nb);
                 $pj = $this->makeTransitionForPJ($perso);
 
-                // Create and save recover key
-                $pj->recover_key = Uuid::uuid4();
-                $pj->save();
+                // @todo repair email
+                // if($pj->v4_email) Mail::to($pj->v4_email)->send(new RecoverPersonnage($pj));
 
-                Mail::to($pj->v4_email)->send(new RecoverPersonnage($pj));
-
-                $this->info($perso->name." Recovered !");
+                $this->info($pj->name." Recovered !");
 
                 // maj du dernier personnage recovered
             } catch (\Exception $exception) {
                 $this->config->personnage = $nb--;
                 $this->config->save();
-                $this->error("Echec ! ID: ".$nb);
-                break;
+                $this->error("Echec ! ID: ".$nb++);
+                throw $exception;
             }
         }
     }
@@ -104,14 +92,21 @@ class TransitionPersonnage extends Command
      */
     private function checkMaxPersonnages()
     {
-        $nb = DB::connection("v4")->table("phpbb_users")->count();
+        $nb = TransitionUser::all()->count();
         $this->config->max_personnage = $nb;
         $this->config->save();
         $this->info("Max Personnage Checked : ".$nb);
     }
 
-    private function makeTransitionForPJ($perso): Personnage
+    private function makeTransitionForPJ(TransitionUser $oldUser): Personnage
     {
+        $pj = Personnage::firstOrCreate(['v4_id' => $oldUser->user_id, 'name' => 'tmp']);
+        foreach (TransitionUser::TRANSITION as $key => $value) {
+            $pj->{$value} = $oldUser->{$key};
+        }
 
+        $pj->recover_key = Uuid::uuid4();
+        $pj->save();
+        return $pj;
     }
 }
