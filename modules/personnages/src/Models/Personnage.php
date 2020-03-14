@@ -142,9 +142,11 @@ class Personnage extends Model implements HasMedia, HasInventoryContract
         parent::boot();
 
         static::created(function($model) {
-            $personnages = $model->owner->personnages;
-            foreach ($personnages as $personnage) $personnage->setActive(false);
-            $model->setActive(true);
+            if($model->owner) {
+                $personnages = $model->owner->personnages;
+                foreach ($personnages as $personnage) $personnage->setActive(false);
+                $model->setActive(true);
+            }
         });
     }
 }

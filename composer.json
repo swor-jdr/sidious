@@ -25,6 +25,7 @@
         "mtolhuys/laravel-schematics": "^0.9.10",
         "nova-cards/system-information-card": "^1.0",
         "overtrue/laravel-follow": "^1.1",
+        "qoraiche/laravel-mail-editor": "^2.0",
         "silber/bouncer": "v1.0.0-rc.7",
         "spatie/laravel-medialibrary": "^7.19",
         "spatie/laravel-sluggable": "^2.4",
@@ -55,7 +56,8 @@
             "Modules\\Factions\\": "modules/factions/src",
             "Modules\\Holonews\\": "modules/holonews/src",
             "Modules\\Inventory\\": "modules/inventory/src",
-            "Modules\\Notifications\\": "modules/notifications/src"
+            "Modules\\Notifications\\": "modules/notifications/src",
+            "Modules\\Transition\\": "modules/transition/src"
         }
     },
     "autoload-dev": {
@@ -68,6 +70,7 @@
             "Modules\\Factions\\Tests\\": "modules/factions/tests",
             "Modules\\Holonews\\Tests\\": "modules/holonews/tests",
             "Modules\\Inventory\\Tests\\": "modules/inventory/tests",
+            "Modules\\Transition\\Tests\\": "modules/transition/tests",
             "Modules\\Notifications\\Tests\\": "modules/inventory/tests"
         }
     },
