@@ -3,8 +3,8 @@
 namespace Laravel\Nova\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use Laravel\Nova\Http\Requests\LensRequest;
 use Laravel\Nova\Http\Requests\LensActionRequest;
+use Laravel\Nova\Http\Requests\LensRequest;
 
 class LensActionController extends Controller
 {
@@ -33,6 +33,8 @@ class LensActionController extends Controller
      */
     public function store(LensActionRequest $request)
     {
+        $request->validateFields();
+
         return $request->action()->handleRequest($request);
     }
 }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -23,13 +24,21 @@ class AuthController extends Controller
      */
     public function login()
     {
+        $rules = [
+            "email" => "email|required",
+            "password" => "string|min:6|required"
+        ];
+        request()->validate($rules);
+
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken(env("APP_NAME"))->accessToken;
+            return response()->json(compact("user", "token"));
         }
 
-        return $this->respondWithToken($token);
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
     /**
@@ -39,7 +48,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $user->load(['personnages']);
         return response()->json($user);
     }
@@ -51,38 +60,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        Auth::logout();
 
         return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh()
-    {
-        return $this->respondWithToken(auth()->refresh());
-    }
-
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL());
-
-        $user = auth()->user();
-        $user->load(['personnages']);
-
-        return response()->json([
-            'token' => $token,
-            'expires_at' => $expires_at,
-            'user' => $user
-        ]);
     }
 }

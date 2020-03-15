@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['only' => ['me', 'update', 'destroy']]);
+        $this->middleware('auth:api', ['only' => ['me', 'update', 'destroy']]);
     }
 
     /**
@@ -32,13 +32,11 @@ class UsersController extends Controller
     {
         $user = User::create(request()->input());
         $user->load(['personnages']);
-        $token = JWTAuth::fromUser($user);
-        $expires_at = Carbon::now()->addMinutes(auth()->factory()->getTTL())->timestamp;
+        $token = $user->createToken(env("APP_NAME"))->accessToken;
 
         return response()->json([
             "user" => $user,
-            "token" => $token,
-            "expires_at" => $expires_at
+            "token" => $token
         ]);
     }
 
@@ -50,7 +48,7 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        return response()->json($user);
+        return response()->json($user->load(['personnages']));
     }
 
     /**

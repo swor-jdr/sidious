@@ -2,18 +2,18 @@
 
 namespace Laravel\Nova\Tests\Fixtures;
 
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\KeyValue;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\HasOne;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\ResourceToolElement;
-use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class UserResource extends Resource
 {
@@ -56,6 +56,17 @@ class UserResource extends Resource
     }
 
     /**
+     * Indicates whether Nova should check for modifications between viewing and updating a resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return  bool
+     */
+    public static function trafficCop(Request $request)
+    {
+        return $_SERVER['nova.user.trafficCop'] ?? static::$trafficCop;
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,7 +80,11 @@ class UserResource extends Resource
 
                 Text::make('Name')
                             ->creationRules('required', 'string', 'max:255')
-                            ->updateRules('required', 'string', 'max:255'),
+                            ->updateRules('required', 'string', 'max:255')
+                            ->rules(function () {
+                                return ($_SERVER['nova.user.fixedValuesOnUpdate'] ?? false) && $this->resource->email === 'taylor@laravel.com'
+                                    ? ['in:Taylor Otwell'] : [];
+                            }),
             ]),
 
             Text::make('Email')
@@ -85,14 +100,19 @@ class UserResource extends Resource
                 }),
 
             Text::make('Password')
-                                ->onlyOnForms()
-                                ->rules('required', 'string', 'min:6'),
+                ->onlyOnForms()
+                ->rules('required', 'string', 'min:8')
+                ->updateRules(function () {
+                    return ($_SERVER['nova.user.fixedValuesOnUpdate'] ?? false) && $this->resource->email === 'taylor@laravel.com'
+                        ? ['in:taylorotwell'] : [];
+                }),
 
             Text::make('Restricted')->canSee(function () {
                 return false;
             }),
 
             HasOne::make('Address', 'address', AddressResource::class),
+            HasOne::make('Profile', 'profile', ProfileResource::class)->nullable(),
             HasMany::make('Posts', 'posts', PostResource::class),
 
             BelongsToMany::make('Roles', 'roles', RoleResource::class)->referToPivotAs($_SERVER['nova.user.rolePivotName'] ?? null)->fields(function () {
@@ -192,7 +212,16 @@ class UserResource extends Resource
             new ExceptionAction,
             new FailingAction,
             new NoopAction,
-            new QueuedAction,
+            tap(new QueuedAction, function (QueuedAction $action) {
+                if ($_SERVER['nova.user.actionCallbacks'] ?? false) {
+                    $action->canRun(function ($request, $model) {
+                        return $model->id % 2;
+                    });
+                    $action->canSee(function () {
+                        return true;
+                    });
+                }
+            }),
             new QueuedResourceAction,
             new QueuedUpdateStatusAction,
             new RequiredFieldAction,
@@ -202,6 +231,9 @@ class UserResource extends Resource
             (new UnrunnableAction)->canSee(function ($request) {
                 return true;
             })->canRun(function ($request, $model) {
+                return false;
+            }),
+            (new UnrunnableDestructiveAction)->canRun(function ($request, $model) {
                 return false;
             }),
             new UpdateStatusAction,

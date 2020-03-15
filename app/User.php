@@ -6,14 +6,15 @@ use App\Traits\IsJWTSubject;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 use Modules\Personnages\Traits\HasPersonnages;
 use Overtrue\LaravelFollow\Traits\CanFollow;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use Notifiable, IsJWTSubject, SoftDeletes, HasRolesAndAbilities, HasPersonnages, CanFollow;
+    use Notifiable, SoftDeletes, HasRolesAndAbilities, HasPersonnages, CanFollow, HasApiTokens;
 
     protected $with = ['personnages'];
 

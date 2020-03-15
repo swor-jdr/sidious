@@ -58,11 +58,11 @@ class Personnage extends Model implements HasMedia, HasInventoryContract
             ->saveSlugsTo('slug');
     }
 
-    public function resolveRouteBinding($value)
+    public function resolveRouteBinding($value, $field = null)
     {
         if(is_numeric($value)) return parent::resolveRouteBinding($value);
         if(is_string($value)) return $this->where('slug', $value)->firstOrFail();
-        return parent::resolveRouteBinding($value);
+        return parent::resolveRouteBinding($value, $field);
     }
 
     /**
@@ -142,9 +142,11 @@ class Personnage extends Model implements HasMedia, HasInventoryContract
         parent::boot();
 
         static::created(function($model) {
-            $personnages = $model->owner->personnages;
-            foreach ($personnages as $personnage) $personnage->setActive(false);
-            $model->setActive(true);
+            if($model->owner) {
+                $personnages = $model->owner->personnages;
+                foreach ($personnages as $personnage) $personnage->setActive(false);
+                $model->setActive(true);
+            }
         });
     }
 }
