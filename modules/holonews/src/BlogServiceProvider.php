@@ -19,6 +19,7 @@ class BlogServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        $this->mapApiRoutes();
         $this->registerRoutes();
         $this->registerAuthGuard();
         $this->registerPublishing();
@@ -99,5 +100,20 @@ class BlogServiceProvider extends ServiceProvider
                 __DIR__.'/../config.php' => config_path('holonews.php'),
             ], 'holonews-config');
         }
+    }
+
+    /**
+     * Add api routes in provider using standard 'api' middleware
+     *
+     * @return void
+     */
+    private function mapApiRoutes()
+    {
+        Route::namespace($this->namespace . "\Api")
+            ->middleware("api")
+            ->prefix("api")
+            ->group(function () {
+                require __DIR__. '/../api.php';
+            });
     }
 }

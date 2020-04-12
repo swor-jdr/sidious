@@ -90,6 +90,11 @@
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
+        ],
+        "setup": [
+            "@php artisan key:generate",
+            "@php artisan migrate",
+            "@php artisan passport:install"
         ]
     },
     "config": {
