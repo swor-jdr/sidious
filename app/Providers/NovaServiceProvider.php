@@ -49,6 +49,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 "gauvain.boiche@wanadoo.fr",
                 "camille.sautot@gmail.com",
                 "vador@sith.gal",
+                "romain.millard@live.fr",
             ]);
         });
     }
