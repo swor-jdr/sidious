@@ -36,6 +36,10 @@ class Authenticate
      */
     public function handle(Request $request, \Closure $next)
     {
+        if($request->header("API_KEY") && ($request->header("API_KEY") === env("API_KEY")))
+        {
+            return $next($request);
+        }
         if ($this->auth->guard('holonews')->check()) {
             $this->auth->shouldUse('holonews');
         } else {
