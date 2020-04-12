@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Modules\Holonews\Models\Tag;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Timothyasp\Color\Color;
 
 class BlogTag extends Resource
 {
@@ -53,6 +54,8 @@ class BlogTag extends Resource
             Text::make('Nom', 'name')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Color::make("color"),
         ];
     }
 
