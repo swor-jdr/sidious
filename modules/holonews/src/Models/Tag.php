@@ -3,10 +3,12 @@ namespace Modules\Holonews\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Tag extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasSlug;
 
     protected $table = "news_tags";
 
@@ -16,6 +18,16 @@ class Tag extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get the options for generating the slug.
+     */
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
+    }
 
     /**
      * The attributes that should be casted.

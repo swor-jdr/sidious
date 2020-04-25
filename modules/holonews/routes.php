@@ -1,7 +1,4 @@
 <?php
-Route::get('posts', 'PostsController@all')->name('posts.list');
-Route::get('posts/{slug}', 'PostsController@show')->name('posts.show');
-
 // Blog Posts...
 Route::get('/api/posts', 'PostsController@index')->name('posts.index');
 Route::get('/api/posts/{id?}', 'PostsController@show')->name('posts.show');
