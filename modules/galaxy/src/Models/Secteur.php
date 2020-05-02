@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 use Modules\Inventory\Contracts\HasInventoryContract;
 use Modules\Inventory\Traits\HasInventory;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Secteur extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, NodeTrait, HasSlug, HasMediaTrait, HasInventory;
+    use SoftDeletes, NodeTrait, HasSlug, InteractsWithMedia, HasInventory;
 
     /**
      * Get the options for generating the slug.
@@ -31,7 +31,7 @@ class Secteur extends Model implements HasMedia, HasInventoryContract
      *
      * @return void
      */
-    public function registerMediaCollections()
+    public function registerMediaCollections(): void
     {
         $this->addMediaCollection('secteurs_image')->singleFile();
     }
