@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Events\NewUserOnline;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            event(new NewUserOnline($user->id));
             $token = $user->createToken(env("APP_NAME"))->accessToken;
             return response()->json(compact("user", "token"));
         }
