@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 
 use App\Events\NewUserOnline;
+use App\Events\UserLoggedOut;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,7 @@ class AuthController extends Controller
     {
         $tokens = request()->user()->tokens;
         foreach ($tokens as $token) $token->revoke();
+        event(new UserLoggedOut(request()->user()->id));
 
         return response()->json(['message' => 'Successfully logged out']);
     }
