@@ -26,8 +26,7 @@ class ArticlesController extends Controller
                 });
             })
             ->orderBy('created_at', 'DESC')
-            ->skip(4)
-            ->paginate(5);
+            ->paginate(4);
         return $all;
     }
 
