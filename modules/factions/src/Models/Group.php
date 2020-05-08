@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Inventory\Contracts\HasInventoryContract;
 use Modules\Inventory\Traits\HasInventory;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 class Group extends Model implements HasMedia, HasInventoryContract
 {
-    use SoftDeletes, HasSlug, HasEconomy, HasMediaTrait, HasInventory;
+    use SoftDeletes, HasSlug, HasEconomy, InteractsWithMedia, HasInventory;
 
     protected $table = "groups";
     protected $guarded = [];
@@ -23,7 +23,7 @@ class Group extends Model implements HasMedia, HasInventoryContract
      *
      * @return void
      */
-    public function registerMediaCollections()
+    public function registerMediaCollections(): void
     {
         $this->addMediaCollection('image')->singleFile();
     }
