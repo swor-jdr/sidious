@@ -15,9 +15,10 @@ class FicheController extends Controller
      */
     public function show(Personnage $personnage)
     {
-        return Fiche::with("lines", "account", "account.transactions")->where([
+        $fiche = Fiche::where([
             "owner_type" => Personnage::class,
             "owner_id" => $personnage->id,
-        ])->first();
+        ])->firstOrFail();
+        return $fiche->load("lines", "account");
     }
 }
