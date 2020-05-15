@@ -14,14 +14,14 @@ class AccountController extends Controller
      * Get account & all transactions
      *
      * @param Account $account
-     * @return Collection
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Account $account)
     {
         $account->load("from", "to");
         $transactions = new Collection([$account->from, $account->to]);
         $transactions->sortBy('created_at');
-        return $transactions;
+        return response()->json(["account" => $account, "transactions" => $transactions]);
     }
 
     /**
