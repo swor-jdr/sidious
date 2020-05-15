@@ -4,6 +4,7 @@ namespace Modules\Galaxy\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Economy\Contracts\EconomicActor;
 use Modules\Economy\Traits\HasCompanies;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Traits\InGroups;
@@ -15,7 +16,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Planet extends Model implements HasMedia, HasInventoryContract
+class Planet extends Model implements HasMedia, HasInventoryContract, EconomicActor
 {
     use SoftDeletes, HasSlug, HasCompanies, HasEconomy, InteractsWithMedia, InGroups, HasInventory;
 
