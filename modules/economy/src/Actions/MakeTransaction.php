@@ -57,7 +57,6 @@ class MakeTransaction extends Action
                 "isCredit" => true,
                 "motivation" => $this->motivation,
             ]);
-            event(new TransactionConfirmed($transaction));
             return $transaction;
         } catch (\Exception $exception) {
             throw $exception;
