@@ -3,11 +3,10 @@ namespace Modules\Economy\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
-use Modules\Economy\Actions\MakeTransaction;
 use Modules\Economy\Contracts\EconomicActor;
+use Modules\Economy\Events\TransactionOrder;
 use Modules\Economy\Exceptions\TransactionNotAllowed;
 use Modules\Economy\Models\Account;
-use Modules\Economy\Models\Transaction;
 
 class AccountController extends Controller
 {
@@ -21,7 +20,7 @@ class AccountController extends Controller
     {
         $account->load("from", "to");
         $transactions = new Collection([$account->from, $account->to]);
-        $transactions->sortBy('created_at');
+        $transactions->sortBy('created_at', 'DESC');
         return response()->json(["account" => $account, "transactions" => $transactions]);
     }
 
@@ -38,7 +37,7 @@ class AccountController extends Controller
     private function transfer(EconomicActor $from, EconomicActor $to, int $amount, string $motivation)
     {
         try {
-            // an action should be here but is not
+            event(new TransactionOrder($amount, $motivation, $to->account, $from->account));
         } catch (\Exception $exception) {}
     }
 
