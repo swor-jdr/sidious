@@ -3,6 +3,7 @@ namespace Modules\Economy\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
+use Modules\Economy\Actions\MakeTransaction;
 use Modules\Economy\Contracts\EconomicActor;
 use Modules\Economy\Exceptions\TransactionNotAllowed;
 use Modules\Economy\Models\Account;
@@ -36,17 +37,9 @@ class AccountController extends Controller
      */
     private function transfer(EconomicActor $from, EconomicActor $to, int $amount, string $motivation)
     {
-        if($amount <= 0) throw new TransactionNotAllowed("Montant négatif interdit");
-        if(!$from->isSolvable($amount)) throw new TransactionNotAllowed("Compte insolvable");
-
-        $transaction = Transaction::create([
-            "account_from" => $from->account->id,
-            "account_to" => $to->account->id,
-            "isCredit" => true,
-            "motivation" => $motivation
-        ]);
-
-        return $transaction;
+        try {
+            // an action should be here but is not
+        } catch (\Exception $exception) {}
     }
 
     /**

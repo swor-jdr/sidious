@@ -13,7 +13,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class CyclePerformed
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, SerializesModels;
 
     public $date;
 
@@ -25,15 +25,5 @@ class CyclePerformed
     public function __construct()
     {
         $this->date = Carbon::now()->format("M Y");
-    }
-
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
-    public function broadcastOn()
-    {
-        return new PrivateChannel('channel-name');
     }
 }

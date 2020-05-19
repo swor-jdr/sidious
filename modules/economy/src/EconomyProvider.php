@@ -3,6 +3,7 @@ namespace Modules\Economy;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Spatie\EventSourcing\Facades\Projectionist;
 
 class EconomyProvider extends ServiceProvider
 {
@@ -15,7 +16,9 @@ class EconomyProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Projectionist::addProjectors([
+            Projectors\AccountProjector::class
+        ]);
     }
 
     /**
