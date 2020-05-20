@@ -3,6 +3,7 @@ namespace Modules\Personnages\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Economy\Contracts\EconomicActor;
 use Modules\Economy\Traits\HasEconomy;
 use Modules\Factions\Traits\InGroups;
 use Modules\Forum\Traits\PostsInForum;
@@ -17,7 +18,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Personnage extends Model implements HasMedia, HasInventoryContract
+class Personnage extends Model implements HasMedia, HasInventoryContract, EconomicActor
 {
     use SoftDeletes, HasSlug, InteractsWithMedia, HasRolesAndAbilities, HasEconomy, InGroups, PostsInForum, HasInventory;
 
