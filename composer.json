@@ -29,7 +29,6 @@
         "predis/predis": "^1.1",
         "qoraiche/laravel-mail-editor": "^2.0",
         "silber/bouncer": "v1.0.0-rc.7",
-        "spatie/laravel-event-sourcing": "^3.1",
         "spatie/laravel-medialibrary": "^8.0",
         "spatie/laravel-sluggable": "^2.4",
         "spatie/laravel-tags": "^2.6",
