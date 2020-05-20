@@ -19,6 +19,10 @@ class EconomyProvider extends ServiceProvider
         Projectionist::addProjectors([
             Projectors\AccountProjector::class
         ]);
+
+        $this->commands([
+            Commands\EconomicCycleCommand::class,
+        ]);
     }
 
     /**

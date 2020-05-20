@@ -39,7 +39,10 @@ class MakeTransaction extends Action
      */
     public function authorize()
     {
-        return $this->from->isSolvable($this->amount);
+        if($this->from) {
+            return $this->from->canPay($this->amount);
+        }
+        return true;
     }
 
     /**

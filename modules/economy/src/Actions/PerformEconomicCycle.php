@@ -24,7 +24,7 @@ class PerformEconomicCycle extends Action
         $fiches = Fiche::all();
         $motivation = "Cycle Economique | " . Carbon::now()->format(" m Y");
         foreach ($fiches as $fiche) {
-            ProcessEconomicTransfer::dispatch($motivation, abs($fiche->balance), $fiche->account->id, null);
+            MakeTransaction::dispatch(abs($fiche->balance), $motivation, $fiche->account, null);
         }
         event(new CyclePerformed);
     }
