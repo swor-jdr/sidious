@@ -56,7 +56,7 @@ class PersonnageController extends Controller
      */
     public function show(Personnage $personnage)
     {
-        return $personnage->load("owner");
+        return $personnage->load("owner", "account", "fiche", "fiche.lines");
     }
 
     /**
