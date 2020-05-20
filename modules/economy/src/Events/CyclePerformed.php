@@ -22,8 +22,8 @@ class CyclePerformed
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($date)
     {
-        $this->date = Carbon::now()->format("M Y");
+        $this->date = $date;
     }
 }
