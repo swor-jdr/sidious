@@ -16,7 +16,7 @@ class FicheController extends Controller
     public function show(Personnage $personnage)
     {
         $fiche = Fiche::where([
-            "owner_type" => Personnage::class,
+            "owner_type" => "Personnage",
             "owner_id" => $personnage->id,
         ])->firstOrFail();
         return $fiche->load("lines", "account");

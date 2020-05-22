@@ -1,9 +1,6 @@
 <?php
-
 namespace Modules\Economy\Actions;
 
-use Modules\Economy\Events\TransactionConfirmed;
-use Modules\Economy\Exceptions\TransactionNotAllowed;
 use Lorisleiva\Actions\Action;
 use Modules\Economy\Models\Account;
 use Modules\Economy\Models\Transaction;
@@ -48,7 +45,7 @@ class MakeTransaction extends Action
     /**
      * Make a transaction
      *
-     * @throws TransactionNotAllowed|\Exception
+     * @throws \Exception
      */
     public function handle()
     {
