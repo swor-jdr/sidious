@@ -16,7 +16,7 @@ class AddFrozenOptionAccount extends Migration
     public function down()
     {
         Schema::table("accounts", function (Blueprint $table) {
-            $table->dropColumn("frozen");
+            $table->dropColumn("isFrozen");
         });
     }
 }

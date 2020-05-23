@@ -18,7 +18,7 @@ class LastPostTest extends TestCase
     private $topic;
     private $message;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
