@@ -41,7 +41,7 @@ class AccountController extends Controller
             Transaction::create([
                 "amount" => $data['amount'],
                 "motivation" => $data["motivation"],
-                "account_to" => $data['to'],
+                "account_to" => $to->id,
                 "account_from" => $account->id,
                 "isCredit" => true
             ]);
@@ -60,18 +60,24 @@ class AccountController extends Controller
      */
     public function complexTransaction()
     {
+        // get data from request
         $data = request()->only(["to", "to_type", "motivation", "amount", "from", "from_type"]);
+        // @todo validate request
 
+        // check accounts. Will throw 404 if someone tries to send money from fake account
         $to = $this->findAccountByOwner($data['to_type'], $data['to']);
         $from = $this->findAccountByOwner($data['from_type'], $data['from']);
 
+        // if origin account is not enough funded, throw error
         if(!$from->canPay($data['amount'])) throw new TransactionNotAllowed("Not enough funds");
+
+        // try transaction
         try {
             Transaction::create([
                 "amount" => $data['amount'],
                 "motivation" => $data["motivation"],
-                "account_to" => $data['to'],
-                "account_from" => $data['from'],
+                "account_to" => $to->id,
+                "account_from" => ($data['from']) ? $from->id : null,
                 "isCredit" => true,
             ]);
         } catch (\Exception $exception) {

@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Account extends Resource
@@ -71,8 +72,11 @@ class Account extends Resource
                 ]),
 
             Number::make("Solde", "balance")
-                ->sortable()
-                ->exceptOnForms(),
+                ->sortable(),
+
+            Text::make("Origine", "from_name"),
+
+            Text::make("Destinataire", "to_name"),
 
             Boolean::make("Gelé", "isFrozen"),
 
