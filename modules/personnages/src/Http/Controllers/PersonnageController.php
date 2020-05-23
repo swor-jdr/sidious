@@ -56,7 +56,7 @@ class PersonnageController extends Controller
      */
     public function show(Personnage $personnage)
     {
-        return $personnage->load("owner", "account", "fiche", "fiche.lines");
+        return $personnage->load("owner", "account", "fiche");
     }
 
     /**
@@ -105,6 +105,9 @@ class PersonnageController extends Controller
              */
             if(request()->file("avatar")) {
                 $personnage->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            }
+            if(request()->file("banner")) {
+                $personnage->addMediaFromRequest('banner')->toMediaCollection('banners');
             }
 
             event(new PersonnageUpdated($personnage));

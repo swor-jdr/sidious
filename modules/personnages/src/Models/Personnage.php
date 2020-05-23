@@ -31,7 +31,7 @@ class Personnage extends Model implements HasMedia, HasInventoryContract, Econom
 
     protected $hidden = ["deleted_at"];
 
-    protected $with = ['assignations'];
+    protected $with = ['assignations', 'fiche', 'account'];
 
     public static $rules = [
         "name" => "unique:personnages|min:3|required",
