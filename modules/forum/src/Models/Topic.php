@@ -51,9 +51,5 @@ class Topic extends Model
         static::deleted(function ($model) {
             $model->posts()->delete();
         });
-
-        static::created(function ($model) {
-            $model->author->owner->follow($model);
-        });
     }
 }
