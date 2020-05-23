@@ -34,6 +34,7 @@ class LastPostTest extends TestCase
      */
     public function it_evaluates_new_last()
     {
+        dd($this->flyingTopic);
         $response = $this->put("api/forums/".$this->flyingForum->id, [
             "name" => "evaluation",
             "content" => "test thing",
