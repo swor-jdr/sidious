@@ -18,19 +18,19 @@ class ForumTest extends TestCase
     private $author;
     private $user;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->forum = factory(Forum::class)->create();
         $this->user = factory(User::class)->create();
-        /*$this->author = factory(Personnage::class)->create([
+        $this->author = factory(Personnage::class)->create([
             "owner_id" => $this->user->id
         ]);
         $this->forum_topic = factory(Topic::class)->create([
-            "author" => $this->author->id,
+            "author_id" => $this->author->id,
             "forum_id" => $this->forum->id
-        ]);*/
+        ]);
     }
 
     /**
@@ -85,7 +85,7 @@ class ForumTest extends TestCase
 
     public function it_destroys_child_forums_when_deleted()
     {
-        
+
     }
 
     public function non_admin_cannot_use_forum_api()
