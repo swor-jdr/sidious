@@ -25,6 +25,13 @@ class Transaction extends Model
         return $this->belongsTo(Account::class, "account_from");
     }
 
+    public function setNames()
+    {
+        $this->to_name = $this->to->owner_name;
+        if($this->from) $this->from_name = $this->from->owner_name;
+        $this->save();
+    }
+
     /**
      * Handles account balance when created or deleted
      */
@@ -34,6 +41,7 @@ class Transaction extends Model
 
         static::created(function ($model) {
             $model->to->updateBalance($model->amount, $model->isCredit);
+            $model->setNames();
             if($model->account_from) $model->from->updateBalance($model->amount, !$model->isCredit);
         });
 

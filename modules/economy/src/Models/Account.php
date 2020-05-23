@@ -75,4 +75,14 @@ class Account extends Model
     {
         return ($this->balance >= $amount);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            $model->owner_name = $model->owner->name;
+            $model->save();
+        });
+    }
 }
