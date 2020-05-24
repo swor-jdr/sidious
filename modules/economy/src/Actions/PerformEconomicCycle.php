@@ -28,7 +28,8 @@ class PerformEconomicCycle extends Action
     public function handle()
     {
         $now = Carbon::now()->format("m Y");
-        if($this->checkLastRun($now)) {
+
+        if($this->checkLastRun()) {
             $fiches = Fiche::all();
             $motivation = "Cycle Economique | " . $now;
             foreach ($fiches as $fiche) {
@@ -47,11 +48,11 @@ class PerformEconomicCycle extends Action
      * @param string $now
      * @return int
      */
-    private function checkLastRun(string $now)
+    private function checkLastRun(): bool
     {
         $configuration = Configuration::get("LAST_ECONOMIC_CYCLE");
         $configuration = Carbon::createFromFormat("m Y", $configuration);
-        $now = Carbon::createFromFormat("m Y", $now);
+        $now = Carbon::now();
 
         $diff = $now->diffInMonths($configuration);
         return ($diff);
