@@ -3,6 +3,7 @@
 namespace Modules\Economy\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Modules\Economy\Models\EconomyLine;
 use Modules\Economy\Models\Fiche;
@@ -95,5 +96,22 @@ class EconomyLineController extends Controller
         } catch (\Exception $exception) {
             throw $exception;
         }
+    }
+
+    /**
+     * Validate economy line
+     *
+     * @param Fiche $fich
+     * @param int $number
+     * @return EconomyLine
+     */
+    public function validation(Fiche $fich, $number)
+    {
+        $economyLine = EconomyLine::findOrFail($number);
+        $economyLine->isValidated = true;
+        $economyLine->validatedBy = request()->user()->id;
+        $economyLine->save();
+
+        return $economyLine;
     }
 }
