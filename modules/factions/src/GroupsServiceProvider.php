@@ -1,11 +1,14 @@
 <?php
 namespace Modules\Factions;
 
+use App\Traits\UsesProviderHelpers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 class GroupsServiceProvider extends ServiceProvider
 {
+    use UsesProviderHelpers;
+
     protected $namespace = "Modules\Factions\Http\Controllers";
 
     public function boot()
@@ -17,7 +20,7 @@ class GroupsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        $this->registerEloquentFactoriesFrom(__DIR__."/../database/factories");
     }
 
     private function mapApiRoutes()

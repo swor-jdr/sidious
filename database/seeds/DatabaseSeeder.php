@@ -13,5 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PersonnageTableSeeder::class);
         $this->call(HolonewsSeeder::class);
+        $this->call(GroupSeeder::class);
     }
 }
