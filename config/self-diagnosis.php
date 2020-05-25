@@ -28,7 +28,7 @@ return [
             ],
         ],
         \BeyondCode\SelfDiagnosis\Checks\EnvFileExists::class,
-        \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
+        //\BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreSet::class,
         \BeyondCode\SelfDiagnosis\Checks\LocalesAreInstalled::class => [
             'required_locales' => [
                 'en_US',
@@ -49,11 +49,12 @@ return [
             ],
             'include_composer_extensions' => true,
         ],
-        //\BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
-        //    'default_connection' => true,
-        //    'connections' => [],
-        //],
+        \BeyondCode\SelfDiagnosis\Checks\RedisCanBeAccessed::class => [
+            'default_connection' => true,
+            'connections' => [],
+        ],
         \BeyondCode\SelfDiagnosis\Checks\StorageDirectoryIsLinked::class,
+        \Modules\Economy\Checks\LastEconomicCycleCheck::class,
     ],
 
     /*
@@ -64,7 +65,7 @@ return [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithDevDependenciesIsUpToDate::class,
             \BeyondCode\SelfDiagnosis\Checks\ConfigurationIsNotCached::class,
             \BeyondCode\SelfDiagnosis\Checks\RoutesAreNotCached::class,
-            \BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate::class,
+            //\BeyondCode\SelfDiagnosis\Checks\ExampleEnvironmentVariablesAreUpToDate::class,
         ],
         'production' => [
             \BeyondCode\SelfDiagnosis\Checks\ComposerWithoutDevDependenciesIsUpToDate::class,
