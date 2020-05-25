@@ -97,7 +97,8 @@
         "setup": [
             "@php artisan key:generate",
             "@php artisan migrate",
-            "@php artisan passport:install"
+            "@php artisan passport:install",
+            "@php artisan self-diagnosis"
         ]
     },
     "config": {
