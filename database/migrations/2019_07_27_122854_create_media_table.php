@@ -15,7 +15,9 @@ class CreateMediaTable extends Migration
             $table->bigIncrements('id');
             $table->morphs('model');
             $table->string('collection_name');
+            $table->string('conversions_disk');
             $table->string('name');
+            $table->string('uuid')->nullable();
             $table->string('file_name');
             $table->string('mime_type')->nullable();
             $table->string('disk');
