@@ -50,6 +50,6 @@ class UpdateAbilities extends Command
             }
         }
 
-        $this->info("MAJ des permissions OK !");
+        $this->info("Création des permissions OK");
     }
 }
