@@ -37,7 +37,7 @@ class PostsController
     /**
      * Return a single post.
      *
-     * @param  string  $id
+     * @param  integer  $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id = null)
@@ -53,6 +53,11 @@ class PostsController
         return response()->json([
             'entry' => $entry,
         ]);
+    }
+
+    public function showBySlug(string $slug) {
+        $entry = Article::where('slug', $slug)->findOrFail();
+        return $entry;
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 // Blog Posts...
 Route::get('/api/posts', 'PostsController@index')->name('posts.index');
-Route::get('/api/posts/{id?}', 'PostsController@show')->name('posts.show');
+Route::get('/api/posts/{id?}', 'PostsController@show')->name('posts.show')->where('id', '[0-9]+');
+Route::get('/api/posts/{slug}', 'PostController@showBySlug')->name('posts.showBySlug')->where('slug', '[A-Za-z]+');
 Route::post('/api/posts/{id}', 'PostsController@store')->name('posts.store');
 Route::delete('/api/posts/{id}', 'PostsController@delete')->name('posts.delete');
 
