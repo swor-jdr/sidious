@@ -24,6 +24,23 @@ class AccountController extends Controller
     }
 
     /**
+     * Get account from type and id couple
+     *
+     * @param Account $account
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function find()
+    {
+        $data = request()->only(['id', 'type']);
+        $account = $this->findAccountByOwner($data['type'], $data['id']);
+        $transactions = Transaction::where("account_to", $account->id)
+            ->orWhere("account_from", $account->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return response()->json(["account" => $account, "transactions" => $transactions]);
+    }
+
+    /**
      * Transfer from identified account to another
      *
      * @param Account $account
