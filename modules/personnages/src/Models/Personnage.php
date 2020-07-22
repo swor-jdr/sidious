@@ -15,6 +15,7 @@ use Modules\Personnages\Events\PersonnageUpdated;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -71,6 +72,29 @@ class Personnage extends Model implements HasMedia, HasInventoryContract, Econom
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('avatar')->singleFile();
+        $this->addMediaCollection('banner')->singleFile();
+    }
+
+    /**
+     * Register media conversions
+     *
+     * @param Media|null $media
+     * @throws \Spatie\Image\Exceptions\InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null): void
+    {
+        // Navigation avatar
+        $this->addMediaConversion('thumb')
+            ->width(200)
+            ->height(200)
+            ->sharpen(10);
+
+        $this->addMediaConversion('regular')
+            ->width(412)
+            ->height(412)
+            ->sharpen(10);
+
+        // @todo add banner size
     }
 
     /**

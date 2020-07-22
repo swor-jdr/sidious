@@ -65,8 +65,7 @@ class Personnage extends Resource
         return [
             ID::make()->sortable(),
 
-            Files::make("Avatar", 'avatar')
-                ->hideFromIndex(),
+            Files::make("Avatar", 'avatar')->conversionOnIndexView('thumb'),
 
             Text::make('Nom', 'name')
                 ->sortable()
@@ -84,6 +83,8 @@ class Personnage extends Resource
 
             Text::make("Localisation", "location")
                 ->nullable(),
+
+            Files::make("Bannière", "banner")->hideFromIndex(),
 
             NovaTinyMCE::make("Biographie", "bio")
                 ->nullable()
