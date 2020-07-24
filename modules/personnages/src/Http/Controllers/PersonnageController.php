@@ -1,11 +1,11 @@
 <?php
 namespace Modules\Personnages\Http\Controllers;
 
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
 use Modules\Personnages\Events\PersonnageActivated;
 use Modules\Personnages\Events\PersonnageCreated;
 use Modules\Personnages\Events\PersonnageDeactivated;
-use Modules\Personnages\Events\PersonnageDeleted;
 use Modules\Personnages\Events\PersonnageKilled;
 use Modules\Personnages\Events\PersonnageResurrected;
 use Modules\Personnages\Events\PersonnageUpdated;
@@ -19,11 +19,30 @@ class PersonnageController extends Controller
     /**
      * Get all personnages
      *
-     * @return \Illuminate\Database\Eloquent\Collection|Personnage[]
+     * @return \Illuminate\Database\Eloquent\Collection|Personnage[]|LengthAwarePaginator
      */
     public function index()
     {
-        return Personnage::all();
+        $limit = request("limit") || 10;
+
+        $all = Personnage::with(['owner', 'tags'])
+            ->when(request()->has('search'), function ($q) {
+                $q->where('name', 'LIKE', '%' . request('search') . '%');
+            })
+            ->when(request('orderBy'), function ($q, $value) {
+                $q->orderBy($value, 'DESC');
+            })
+            ->when(request('active'), function ($q, $value) {
+                $q->active(true);
+            })
+            ->when(request('staff'), function ($q, $value) {
+                $q->staff(true);
+            })
+            ->when(request('alive'), function ($q, $value) {
+                $q->alive($value);
+            });
+
+        return (request()->has("page")) ? $all->paginate($limit) : $all->get();
     }
 
     /**
@@ -75,8 +94,14 @@ class PersonnageController extends Controller
             /**
              * If there is an avatar, attach it to newly created personnage
              */
-            if(request()->file("avatar")) {
-                $personnage->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+            if(request()->hasFile("avatar")) {
+                $personnage->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+                $thumb = $personnage->getMedia('avatar')->first()->getUrl('thumb');
+                $regular = $personnage->getMedia('avatar')->first()->getUrl('regular');
+
+                $personnage->avatar_tiny = $thumb;
+                $personnage->avatar_regular = $regular;
+                $personnage->save();
             }
 
             event(new PersonnageCreated($personnage));
@@ -100,16 +125,6 @@ class PersonnageController extends Controller
         try {
             $personnage->update($data);
 
-            /**
-             * If there is an avatar, attach it to newly created personnage
-             */
-            if(request()->file("avatar")) {
-                $personnage->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-            }
-            if(request()->file("banner")) {
-                $personnage->addMediaFromRequest('banner')->toMediaCollection('banners');
-            }
-
             event(new PersonnageUpdated($personnage));
             return response()->json($personnage);
         } catch (\Exception $exception) {
@@ -122,23 +137,22 @@ class PersonnageController extends Controller
      *
      * @param Personnage $personnage
      * @throws \Exception
+     * @return void
      */
-    public function destroy(Personnage $personnage)
+    public function destroy(Personnage $personnage): void
     {
         try {
             $personnage->delete();
 
-            if($personnage->active) {
-                $personnage->setActive(false);
+            if($personnage->current) {
+                $personnage->setCurrent(false);
 
                 $otherPersonnages = $personnage->owner->personnages->filter(function($item) use($personnage) {
                     return $item->id !== $personnage->id;
                 });
 
-                if($otherPersonnages) $otherPersonnages->first()->setActive(true);
+                if($otherPersonnages) $otherPersonnages->first()->setCurrent(true);
             }
-
-            event(new PersonnageDeleted($personnage));
         } catch (\Exception $exception) {
             throw $exception;
         }

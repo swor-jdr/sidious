@@ -132,6 +132,30 @@ class Personnage extends Model implements HasMedia, HasInventoryContract, Econom
     }
 
     /**
+     * Filter active personnages
+     *
+     * @param $query
+     * @param boolean $bool
+     * @return mixed
+     */
+    public function scopeCurrent($query, $bool)
+    {
+        return $query->where('current', $bool);
+    }
+
+    /**
+     * Filter active personnages
+     *
+     * @param $query
+     * @param boolean $bool
+     * @return mixed
+     */
+    public function scopeAlive($query, $bool)
+    {
+        return $query->where('alive', $bool);
+    }
+
+    /**
      * Select by owner
      *
      * @param $query
@@ -159,6 +183,22 @@ class Personnage extends Model implements HasMedia, HasInventoryContract, Econom
         }
     }
 
+    /**
+     * Set active to this personnage as given boolean
+     *
+     * @param bool $current
+     * @throws \Exception
+     */
+    public function setCurrent(bool $current)
+    {
+        try {
+            $this->current = $current;
+            $this->save();
+        } catch (\Exception $exception) {
+            throw $exception;
+        }
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -166,8 +206,8 @@ class Personnage extends Model implements HasMedia, HasInventoryContract, Econom
         static::created(function($model) {
             if($model->owner) {
                 $personnages = $model->owner->personnages;
-                foreach ($personnages as $personnage) $personnage->setActive(false);
-                $model->setActive(true);
+                foreach ($personnages as $personnage) $personnage->setCurrent(false);
+                $model->setCurrent(true);
             }
         });
     }
