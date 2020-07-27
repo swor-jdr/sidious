@@ -17,20 +17,17 @@ class PersonnageController extends Controller
     protected $fields = ["name", "bio", "signature", "aversions", "affections", "job", "title", "hide", "owner_id", "location"];
 
     /**
-     * Get all personnages
+     * List all personnages
      *
-     * @return \Illuminate\Database\Eloquent\Collection|Personnage[]|LengthAwarePaginator
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function index()
     {
-        $limit = request("limit") || 10;
+        $limit = request("limit") ?: 10;
 
-        $all = Personnage::with(['owner', 'tags'])
+        return Personnage::with(['owner'])
             ->when(request()->has('search'), function ($q) {
                 $q->where('name', 'LIKE', '%' . request('search') . '%');
-            })
-            ->when(request('orderBy'), function ($q, $value) {
-                $q->orderBy($value, 'DESC');
             })
             ->when(request('active'), function ($q, $value) {
                 $q->active(true);
@@ -40,9 +37,11 @@ class PersonnageController extends Controller
             })
             ->when(request('alive'), function ($q, $value) {
                 $q->alive($value);
-            });
-
-        return (request()->has("page")) ? $all->paginate($limit) : $all->get();
+            })
+            ->when(request('orderBy'), function ($q, $value) {
+                $q->orderBy($value, 'DESC');
+            })
+            ->paginate($limit);
     }
 
     /**
