@@ -1,0 +1,134 @@
+version: '3'
+
+services:
+
+  # Site
+  webserver:
+    image: nginx:stable-alpine
+    container_name: webserver
+    expose:
+      - "80"
+    volumes:
+      - ./:/var/www/html
+      - ./.config/nginx:/etc/nginx
+    depends_on:
+      - php
+      - mysql
+      - redis
+    restart: always
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.backend=swor-api"
+      - "traefik.http.routers.api.rule=Host(`api.swor-jdr.com`)"
+      - "traefik.http.routers.api.entrypoints=websecure"
+      - "traefik.docker.network=web"
+      - "traefik.port=8080"
+    networks: 
+      - sidious-net
+      - web
+
+  # DB
+  mysql:
+    image: mysql:5.7.29
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - sidious-net
+    volumes: 
+      - "dbsidious:/data"
+
+  # PHP
+  php:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    container_name: php
+    depends_on: 
+      - composer
+      - npm
+    volumes: 
+      - ./:/var/www/html
+    ports:
+      - "9000:9000"
+    networks: 
+      - sidious-net
+  
+  composer:
+    image: composer
+    container_name: composer
+    volumes: 
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    networks: 
+      - sidious-net
+
+  # Node
+  node: 
+    image: node:12-alpine
+    container_name: node
+    volumes:
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ['npm', '--no-bin-links']
+    networks: 
+      - sidious-net
+
+  npm:
+    image: node:12-alpine
+    container_name: npm
+    volumes: 
+      - ./:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ['npm']
+
+  # Redis
+  redis:
+    image: 'redis:latest'
+    container_name: redis
+    environment: 
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - DISABLE_COMMANDS=FLUSHDB,FLUSHALL,CONFIG
+    command: "redis-server --appendonly yes"
+    volumes: 
+      - "redis_data:/data"
+    networks: 
+      - sidious-net
+      - web
+
+  # Laravel CLI
+  artisan:
+    build: 
+      context: .
+      dockerfile: dockerfile
+    container_name: artisan
+    volumes: 
+      - ./:/var/www/html
+    depends_on: 
+      - php
+      - mysql
+    working_dir: /var/www/html
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks: 
+      - sidious-net
+
+#Docker Networks
+networks:
+  sidious-net:
+    driver: bridge
+  web:
+    external:
+      name: web
+
+#Volumes
+volumes:
+  dbsidious:
+    driver: local
+  redis_data:
