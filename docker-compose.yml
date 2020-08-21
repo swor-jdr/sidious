@@ -1,19 +1,18 @@
 version: '3'
 
 services:
-
   # Site
   webserver:
     image: nginx:stable-alpine
     container_name: webserver
-    expose:
-      - "80"
+    ports:
+      - "8080:80"
     volumes:
       - ./:/var/www/html
       - ./.config/nginx:/etc/nginx
     depends_on:
-      - php
-      - mysql
+      - php-fpm
+      - db
       - redis
     restart: always
     labels: 
@@ -28,9 +27,9 @@ services:
       - web
 
   # DB
-  mysql:
+  db:
     image: mysql:5.7.29
-    container_name: mysql
+    container_name: db
     restart: unless-stopped
     tty: true
     ports:
@@ -46,11 +45,11 @@ services:
       - "dbsidious:/data"
 
   # PHP
-  php:
+  php-fpm:
     build: 
       context: .
       dockerfile: dockerfile
-    container_name: php
+    container_name: php-fpm
     depends_on: 
       - composer
       - npm
@@ -112,8 +111,8 @@ services:
     volumes: 
       - ./:/var/www/html
     depends_on: 
-      - php
-      - mysql
+      - php-fpm
+      - db
     working_dir: /var/www/html
     entrypoint: ['php', '/var/www/html/artisan']
     networks: 
