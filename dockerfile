@@ -1,3 +1,7 @@
+FROM composer as composer
+COPY . /app
+RUN composer install --ignore-platform-reqs --no-scripts
+
 FROM php:7.4-fpm-alpine AS runner
 WORKDIR /var/www/html
 
@@ -46,4 +50,4 @@ RUN echo '*  *  *  *  * /usr/local/bin/php  /var/www/artisan schedule:run' >> /d
 RUN apk del -f .build-deps
 # Setup Working Dir
 WORKDIR /var/www/html
-
+COPY --from=composer /app/vendor /var/www/html/vendor
