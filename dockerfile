@@ -2,6 +2,13 @@ FROM composer as composer
 COPY . /app
 RUN composer install --ignore-platform-reqs --no-scripts
 
+FROM node:12.7-alpine AS build
+RUN mkdir -p /tmp/app && chown -R node:node /tmp/app
+WORKDIR /tmp/app
+COPY . /tmp/app
+USER node
+RUN npm install
+
 FROM php:7.4-fpm-alpine AS runner
 WORKDIR /var/www/html
 
@@ -51,3 +58,4 @@ RUN apk del -f .build-deps
 # Setup Working Dir
 WORKDIR /var/www/html
 COPY --from=composer /app/vendor /var/www/html/vendor
+COPY --from=build /tmp/app/node_modules /var/www/html/node_modules
